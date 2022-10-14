@@ -1,3 +1,5 @@
+const config = require("./config.json"); //Recupère les informations de la config
+
 const { Client, GatewayIntentBits } = require('discord.js');
 const client = new Client({ intents: [GatewayIntentBits.Guilds] });
 
@@ -13,4 +15,4 @@ client.on('interactionCreate', async interaction => {
   }
 });
 
-client.login(TOKEN);
+client.login(config.TOKEN);
