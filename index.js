@@ -1,7 +1,9 @@
 const fs = require('node:fs');
 const path = require('node:path');
+const Mongoose = require('mongoose');
 const { Client, Collection, GatewayIntentBits } = require('discord.js');
-const { TOKEN } = require('./config.json');
+const { DATABASE_URI, TOKEN } = require('./config.json');
+const { default: mongoose } = require('mongoose');
 
 const client = new Client({
   intents: [
@@ -10,6 +12,16 @@ const client = new Client({
     GatewayIntentBits.MessageContent
   ]
 });
+
+mongoose.connect(DATABASE_URI, {
+	autoIndex: false, // Don't build indexes
+	maxPoolSize: 10, // Maintain up to 10 socket connections
+	serverSelectionTimeoutMS: 5000, // Keep trying to send operations for 5 seconds
+	socketTimeoutMS: 45000, // Close sockets after 45 seconds of inactivity
+	family: 4 // Use IPv4, skip trying IPv6
+}).then(() => { console.log('Client connecté à la base de données') })
+.catch(err => { console.log(err) });
+
 
 client.commands = new Collection();
 const commandsPath = path.join(__dirname, 'commands');
