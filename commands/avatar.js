@@ -14,7 +14,7 @@ module.exports = {
 		console.log(username, avatar);
 
 		const avatarEmbed = new EmbedBuilder()
-			.setColor(0x0099FF)
+			.setColor('Purple')
 			.setTitle(username)
 			.setURL(avatar)
 			.setAuthor({ name: 'Ivis', iconURL: 'https://i.imgur.com/AfFp7pu.png', url: 'https://discord.js.org' })
