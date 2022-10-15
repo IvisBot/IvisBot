@@ -19,7 +19,7 @@ mongoose.connect(DATABASE_URI, {
 	serverSelectionTimeoutMS: 5000, // Keep trying to send operations for 5 seconds
 	socketTimeoutMS: 45000, // Close sockets after 45 seconds of inactivity
 	family: 4 // Use IPv4, skip trying IPv6
-}).then(() => { console.log('Client connecté à la base de données') })
+}).then(() => { console.log('Successfully connected to the database !') })
 .catch(err => { console.log(err) });
 
 
