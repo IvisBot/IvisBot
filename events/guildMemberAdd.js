@@ -28,7 +28,7 @@ module.exports = {
     canvas.context.font = '60px Open Sans Bold';
     canvas.context.fillText(member.user.tag, 512,415)
     canvas.context.font = '24px Open Sans';
-    canvas.context.fillText(`Tu es le ${member.guild.memberCount}e memnbre de ${member.guild.name}`, 512,470)
+    canvas.context.fillText(`Tu es le ${member.guild.memberCount}e membre de ${member.guild.name}`, 512,470)
     canvas.context.beginPath()
     canvas.context.arc(512,161,119,0, Math.PI * 2, true);
     canvas.context.closePath()
