@@ -20,6 +20,8 @@
     "canvas": "^2.10.1",
     "discord.js": "^14.6.0",
     "eslint": "^8.25.0",
-    "mongoose": "^6.2.3"
+    "mongoose": "^6.2.3",
+    "pango": "^0.0.3",
+    "teemojs": "^1.8.0"
   }
 }
