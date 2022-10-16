@@ -1,4 +1,4 @@
-const { RIOT_API } = require('./config.json');
+const { RIOT_API } = require('../config.json');
 const { SlashCommandBuilder, EmbedBuilder } = require('discord.js');
 
 const TeemoJS = require('teemojs');
