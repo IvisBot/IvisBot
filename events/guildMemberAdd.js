@@ -10,7 +10,7 @@ welcomeCanvas.context = welcomeCanvas.create.getContext('2d')
 welcomeCanvas.context.font = '72px "DejaVuSansCondensed-Bold"';
 welcomeCanvas.context.fillStyle = '#ffffff';
 
-Canvas.loadImage('img/bg.jpeg').then(async (img) => {
+Canvas.loadImage('img/welcomeBanner.jpeg').then(async (img) => {
   welcomeCanvas.context.drawImage(img, 0, 0, 1024, 500)
   welcomeCanvas.context.fillText('welcome', 360, 360);
   welcomeCanvas.context.beginPath();
