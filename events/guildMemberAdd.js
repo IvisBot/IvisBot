@@ -1,48 +1,52 @@
 const Canvas = require('canvas');
 const Discord = require('discord.js');
+const config = require('../config.json');
 const { AttachmentBuilder } = require("discord.js");
 const { registerFont} = require('canvas')
 
-registerFont('fonts/DejaVuSansCondensed-Bold.ttf', { family: 'DejaVuSansCondensed-Bold' })
+registerFont('fonts/OpenSans-Regular.ttf', { family: 'Open Sans' })
+registerFont('fonts/OpenSans-SemiBold.ttf', { family: 'Open Sans Bold' })
 var welcomeCanvas = {};
-welcomeCanvas.create = Canvas.createCanvas(1024,500)
+welcomeCanvas.create = Canvas.createCanvas(1024,500);
 welcomeCanvas.context = welcomeCanvas.create.getContext('2d')
-welcomeCanvas.context.font = '72px "DejaVuSansCondensed-Bold"';
 welcomeCanvas.context.fillStyle = '#ffffff';
 
-Canvas.loadImage('img/bg.jpeg').then(async (img) => {
+Canvas.loadImage('img/bg.png').then(async (img) => {
   welcomeCanvas.context.drawImage(img, 0, 0, 1024, 500)
-  welcomeCanvas.context.fillText('welcome', 360, 360);
-  welcomeCanvas.context.beginPath();
-  welcomeCanvas.context.arc(512,128,0, Math.PI * 2, true);
-  welcomeCanvas.context.stroke()
   welcomeCanvas.context.fill()
 })
 
 module.exports = {
   name : 'guildMemberAdd',
   async execute(member) {
-    console.log("Joined")
-    member.guild.channels.cache.get('935858233191579707').send(`${member} has joined the server`);
-    
+
     let canvas = welcomeCanvas;
-    canvas.context.font = '42px "DejaVuSansCondensed-Bold"';
+
     canvas.context.textAlign = 'center';
-    canvas.context.fillText(member.user.tag.toUpperCase(), 512,410)
-    canvas.context.font = '32px sans serif';
-    canvas.context.fillText('You', 512,455)
+    canvas.context.font = '48px Open Sans';
+    canvas.context.fillText('Bienvenue', 512, 340);
+    canvas.context.font = '60px Open Sans Bold';
+    canvas.context.fillText(member.user.tag, 512,415)
+    canvas.context.font = '24px Open Sans';
+    canvas.context.fillText(`Tu es le ${member.guild.memberCount}e memnbre de ${member.guild.name}`, 512,470)
     canvas.context.beginPath()
-    canvas.context.arc(512,166,119,0, Math.PI * 2, true);
+    canvas.context.arc(512,161,119,0, Math.PI * 2, true);
     canvas.context.closePath()
     canvas.context.clip()
-    await Canvas.loadImage(member.user.displayAvatarURL({format : 'png', size :1024}))
+    await Canvas.loadImage(member.user.displayAvatarURL({extension : 'png', size :1024, dynamic: true}))
     .then(img => {
-      canvas.context.drawImage(img,393,47,238,238)
+      canvas.context.drawImage(img,393,42,238,238)
     })
     
     let atta =  new AttachmentBuilder(canvas.create.toBuffer(), {name: 'welcome.png'})
-    try {
-      member.guild.channels.cache.get('935858233191579707').send({files: [atta]})
+    messages = config["welcome-messages"]
+    const keys = Object.keys(messages);
+    const randIndex = Math.floor(Math.random() * keys.length)
+    const randKey = keys[randIndex]
+    const msg = messages[randKey]
+
+    try { 
+      member.guild.channels.cache.get('935858233191579707').send({content : `Bienvenue ${member.user} sur **${member.guild.name}**. ${msg}`,files: [atta]})
       
     } catch (error) {
       console.log(error)
