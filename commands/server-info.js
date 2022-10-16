@@ -16,7 +16,7 @@ module.exports = {
 			.addFields(
 				{
 					name : "Creation date :",
-					value : `${`\`${interaction.guild.createdAt}`.split(' ').slice(0, 4).join(" ")}\``,
+					value : `<t:${`${interaction.guild.createdTimestamp}`.slice(0, 10)}:d>`,
 					inline : true
 				},
 				{
@@ -60,6 +60,7 @@ module.exports = {
 			serverInfoEmbed.addFields({ name : "An error occured !", value : "You server has no icon." })
 		};
 		
+		if (interaction.guild.vanityURLCode) interaction.channel.send(`Invite your friends :  ${interaction.guild.vanityURLCode}`);
 		interaction.reply({ embeds: [serverInfoEmbed] });
 	},
 };
