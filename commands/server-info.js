@@ -35,7 +35,7 @@ module.exports = {
 					inline : true
 				},
 				{
-					name : "Amount of nitro boost :",
+					name : "Total nitro boosts :",
 					value : `\`${interaction.guild.premiumSubscriptionCount}\``,
 					inline : true
 				},
