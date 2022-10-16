@@ -1,6 +1,8 @@
-const TeemoJS = require('teemojs');
-let api = TeemoJS('RGAPI-a8cd5405-9458-49eb-9088-9f4061b36fbb');
+const { RIOT_API } = require('./config.json');
 const { SlashCommandBuilder, EmbedBuilder } = require('discord.js');
+
+const TeemoJS = require('teemojs');
+let api = TeemoJS(RIOT_API);
 
 module.exports = {
 	data: new SlashCommandBuilder()
