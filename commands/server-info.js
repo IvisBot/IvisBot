@@ -7,17 +7,25 @@ module.exports = {
 		.setDescription('Display info about this server.'),
 	async execute(interaction) {
 
-		console.log(interaction.guild.iconURL())
-		
+		icon = interaction.guild.iconURL()
+
 		const serverInfoEmbed = new EmbedBuilder()
 			.setColor('Purple')
 			.setTitle(interaction.guild.name)
 			.setDescription(`Total members: ${interaction.guild.memberCount}`)
-			.setURL(interaction.guild.iconURL())
 			.setAuthor({ name: 'Ivis', iconURL: 'https://i.imgur.com/AfFp7pu.png', url: 'https://discord.js.org' })
-			.setImage(interaction.guild.iconURL())
 			.setTimestamp()
 			.setFooter({ text: 'IvisBot, A fully modular Discord Bot', iconURL: 'https://i.imgur.com/AfFp7pu.png' });
+		
+		if (icon) {
+			serverInfoEmbed.setImage(icon)
+			serverInfoEmbed.setURL(icon)
+		} else {
+			serverInfoEmbed.addFields( 
+				{ name : "An error occured !",
+				value : "You server has no icon."}
+			)
+		};
 		
 		interaction.reply({ embeds: [serverInfoEmbed] });
 	},
