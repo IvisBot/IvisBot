@@ -5,7 +5,7 @@ const { Client, Collection, GatewayIntentBits } = require('discord.js');
 
 const { DATABASE_URI, TOKEN } = require('./config.json');
 
-const { default: mongoose } = require('mongoose');
+const mongoose = require('mongoose');
 const Level = require('./models/level.model');
 
 const client = new Client({
@@ -87,6 +87,7 @@ client.on("messageCreate", async(msg) => {
 
 		levelModel.save();
 	} else {
+		console.log("New user detected in the database");
 		const levelM = await new Level({ memberId: msg.author.id });
 		levelM.save();
 	}
