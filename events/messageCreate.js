@@ -1,3 +1,4 @@
+const { EmbedBuilder } = require('discord.js');
 const mongoose = require('mongoose');
 const Level = require('../models/level.model');
 const { CLIENT_ID } = require('../config.json');
@@ -10,22 +11,34 @@ module.exports = {
             const levelModel = await Level.findOne({ memberId: msg.author.id });
 
             if(levelModel) {
-                levelModel.xp += Math.floor(Math.random() * (50 - 30)) + 30;
+                levelModel.xp += Math.floor(Math.random() * (25 - 15)) + 15;
                 levelModel.messageCount++;
 
-                if(levelModel.xp == levelModel.level * 320) {
-                    levelModel.xp = 0;
+                if (levelModel.level != 0) condition = Math.floor((100 + (levelModel.level-1) * 20) ** 2 / (100 + levelModel.level));
+                else condition = 100;
+
+                if(levelModel.xp >= condition) {
+                    levelModel.xp %= condition;
                     levelModel.level++;
-                    levelModel.save();
-                    msg.reply("Level up > " + levelModel.level);
+                    await levelModel.save();
+
+                    const levelUpEmbed = new EmbedBuilder()
+                        .setColor('CYAN')
+                        .setTitle('Level Up!')
+                        .setDescription(`Congratulations ${msg.author.username}, you have leveled up to level ${levelModel.level}!`)
+                        .setThumbnail(msg.author.avatarURL())
+                        .setTimestamp()
+                        .setFooter({ text: 'IvisBot, A fully modular Discord Bot', iconURL: 'https://i.imgur.com/AfFp7pu.png' });
+
+                    msg.reply({ embeds: [levelUpEmbed] });
                 }
 
-                levelModel.save();
+                await levelModel.save();
             } else {
                 console.log("New user detected in the database");
 
                 const levelM = await new Level({ memberId: msg.author.id });
-                levelM.save();
+                await levelM.save();
 
                 msg.reply("Welcome to the server, you start at the level 1, you can now start chatting to gain xp");
             }
