@@ -12,6 +12,10 @@ const LevelSchema = mongoose.Schema({
     level: {
         type: Number,
         default: 1
+    },
+    messageCount : {
+        type: Number,
+        default: 0
     }
 });
 

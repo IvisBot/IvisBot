@@ -6,7 +6,6 @@ const { Client, Collection, GatewayIntentBits } = require('discord.js');
 const { DATABASE_URI, TOKEN } = require('./config.json');
 
 const mongoose = require('mongoose');
-const Level = require('./models/level.model');
 
 const client = new Client({
   intents: [
