@@ -18,9 +18,11 @@
   "homepage": "https://github.com/IvisBot/IvisBot#readme",
   "dependencies": {
     "canvas": "^2.10.1",
+    "discord-command-cooldown": "^1.0.8",
     "discord.js": "^14.6.0",
     "eslint": "^8.25.0",
     "mongoose": "^6.6.5",
+    "ms": "^2.1.3",
     "pango": "^0.0.3",
     "teemojs": "^1.8.0"
   }
