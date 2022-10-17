@@ -1,4 +1,5 @@
 const {Schema, mongoose} = require('mongoose');
+
 const LevelSchema = mongoose.Schema({
     memberId: {
         type: String,
