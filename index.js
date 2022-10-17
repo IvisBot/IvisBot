@@ -1,9 +1,12 @@
 const fs = require('node:fs');
 const path = require('node:path');
-const Mongoose = require('mongoose');
+
 const { Client, Collection, GatewayIntentBits } = require('discord.js');
+
 const { DATABASE_URI, TOKEN } = require('./config.json');
+
 const { default: mongoose } = require('mongoose');
+const Level = require('./models/level.model');
 
 const client = new Client({
   intents: [
@@ -67,5 +70,26 @@ client.on('interactionCreate', async interaction => {
 		await interaction.reply({ content: 'There was an error while executing this command!', ephemeral: true });
 	}
 });
+
+client.on("messageCreate", async(msg) => {
+
+	const levelModel = await Level.findOne({ memberId: msg.author.id });
+
+	if(levelModel) {
+		levelModel.xp++;
+
+		if(levelModel.xp == 10) {
+			levelModel.xp = 0;
+			levelModel.level++;
+			levelModel.save();
+			msg.reply("Level up > " + levelModel.level);
+		}
+
+		levelModel.save();
+	} else {
+		const levelM = await new Level({ memberId: msg.author.id });
+		levelM.save();
+	}
+})
 
 client.login(TOKEN);

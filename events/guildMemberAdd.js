@@ -47,7 +47,6 @@ module.exports = {
 
     try { 
       member.guild.channels.cache.get('935858233191579707').send({content : `Bienvenue ${member.user} sur **${member.guild.name}**. ${msg}`,files: [atta]})
-      
     } catch (error) {
       console.log(error)
     }
