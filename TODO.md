@@ -34,7 +34,7 @@ This Bot plans to cover as many fields as possible to reach as many customers as
 
 ### In Progress
 
-- [ ] Find Licence #Change it for an appropriate one.
+- [ ] Find Licence #Change it for an appropriate one
 
 - [ ] Make commands
   - [ ] moderation commands

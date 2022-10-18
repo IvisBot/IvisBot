@@ -11,7 +11,7 @@ welcomeCanvas.create = Canvas.createCanvas(1024,500);
 welcomeCanvas.context = welcomeCanvas.create.getContext('2d')
 welcomeCanvas.context.fillStyle = '#ffffff';
 
-Canvas.loadImage('img/bg.png').then(async (img) => {
+Canvas.loadImage('images/welcomeBanner.png').then(async (img) => {
   welcomeCanvas.context.drawImage(img, 0, 0, 1024, 500)
   welcomeCanvas.context.fill()
 })
@@ -24,11 +24,11 @@ module.exports = {
 
     canvas.context.textAlign = 'center';
     canvas.context.font = '48px Open Sans';
-    canvas.context.fillText('Bienvenue', 512, 340);
+    canvas.context.fillText('Welcome', 512, 340);
     canvas.context.font = '60px Open Sans Bold';
     canvas.context.fillText(member.user.tag, 512,415)
     canvas.context.font = '24px Open Sans';
-    canvas.context.fillText(`Tu es le ${member.guild.memberCount}e membre de ${member.guild.name}`, 512,470)
+    canvas.context.fillText(`You are the ${member.guild.memberCount}th member of ${member.guild.name}`, 512,470)
     canvas.context.beginPath()
     canvas.context.arc(512,161,119,0, Math.PI * 2, true);
     canvas.context.closePath()
@@ -48,11 +48,11 @@ module.exports = {
       var msg = messages[randKey]
     }
     else {
-      var msg = "J'espère que tu vas t'y plaire";
+      var msg = `Welcome ${user} to ${server} !`;
     }
     
     try { 
-      member.guild.channels.cache.get('935858233191579707').send({content : `Bienvenue ${member.user} sur **${member.guild.name}**. ${msg}`,files: [atta]})
+      member.guild.channels.cache.get('935858233191579707').send({content : `Welcom ${member.user} on **${member.guild.name}**.\n${msg}`,files: [atta]})
     } catch (error) {
       console.log(error)
     }
