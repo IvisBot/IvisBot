@@ -1,11 +1,13 @@
 const { SlashCommandBuilder, EmbedBuilder } = require('discord.js');
-const { SERVER_DESCRIPTION } = require('../config.json');
+const { SERVER_DESCRIPTION } = require('../../config.json');
 
 module.exports = {
 	data: new SlashCommandBuilder()
 		.setName('server-info')
 		.setDescription('Display info about this server.'),
 	async execute(interaction) {
+
+		console.log("salut");
 
 		icon = interaction.guild.iconURL()
 
