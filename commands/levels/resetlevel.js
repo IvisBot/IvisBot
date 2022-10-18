@@ -17,15 +17,16 @@ module.exports = {
         if (levelModel) {
             const levelModel = await Level.findOne({ memberId: pseudo.id });
             
-            if(levelModel) {
+            try { if(levelModel) {
                 levelModel.level = 0;
                 levelModel.xp = 0;
                 levelModel.save();
                 interaction.reply({ content: `Level of ${pseudo.username} has been reset to 0`, ephemeral: true });
+            }} catch (error) {
+                console.log(error);
+                interaction.reply({ content: "Player not found", ephemeral: true });
             }
         }
-        else {
-            interaction.reply("Error");
-        }
+        interaction.reply("Error");
 	},
 };
