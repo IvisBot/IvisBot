@@ -27,6 +27,5 @@ module.exports = {
                 interaction.reply({ content: "Player not found", ephemeral: true });
             }
         }
-        interaction.reply("Error");
 	},
 };
