@@ -39,12 +39,18 @@ module.exports = {
     })
     
     let atta =  new AttachmentBuilder(canvas.create.toBuffer(), {name: 'welcome.png'})
-    messages = config["welcome-messages"]
-    const keys = Object.keys(messages);
-    const randIndex = Math.floor(Math.random() * keys.length)
-    const randKey = keys[randIndex]
-    const msg = messages[randKey]
 
+    messages = config["WELCOME_MESSAGES"]
+    if (messages != {}){
+      const keys = Object.keys(messages);
+      const randIndex = Math.floor(Math.random() * keys.length)
+      const randKey = keys[randIndex]
+      var msg = messages[randKey]
+    }
+    else {
+      var msg = "J'espère que tu vas t'y plaire";
+    }
+    
     try { 
       member.guild.channels.cache.get('935858233191579707').send({content : `Bienvenue ${member.user} sur **${member.guild.name}**. ${msg}`,files: [atta]})
     } catch (error) {
