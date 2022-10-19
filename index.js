@@ -40,19 +40,41 @@ for (const folder of fs.readdirSync(commandsPathInit)) {
 	}
 }
 
-const eventsPath = path.join(__dirname, 'events');
-const eventFiles = fs.readdirSync(eventsPath).filter(file => file.endsWith('.js'));
+const eventsPathInit = path.join(__dirname, 'events');
 
-for (const file of eventFiles) {
-	const filePath = path.join(eventsPath, file);
-	const event = require(filePath);
-	if (event.once) {
-		client.once(event.name, (...args) => event.execute(...args));
-	} else {
-		client.on(event.name, (...args) => event.execute(...args));
+for (const folder1 of fs.readdirSync(eventsPathInit)) {
+	const eventsPath1 = path.join(__dirname, `events/${folder1}`);
+	const eventFiles1 = fs.readdirSync(eventsPath1).filter(file => file.endsWith('.js'));
+
+	for (const file1 of eventFiles1) {
+		if(folder1 != "guild") {
+			const filePath = path.join(eventsPath1, file1);
+			const event = require(filePath);
+
+			if (event.once) {
+				client.once(event.name, (...args) => event.execute(...args));
+			} else {
+				client.on(event.name, (...args) => event.execute(...args));
+			}
+		} else {
+			for (const folder2 of fs.readdirSync(eventsPath1)) {
+				const eventsPath2 = path.join(__dirname, `events/${folder2}`);
+				const eventFiles2 = fs.readdirSync(eventsPath2).filter(file => file.endsWith('.js'));
+
+				for (const file2 of eventFiles2) {
+					const filePath = path.join(eventsPath1, file2);
+					const event = require(filePath);
+
+					if (event.once) {
+						client.once(event.name, (...args) => event.execute(...args));
+					} else {
+						client.on(event.name, (...args) => event.execute(...args));
+					}
+				}
+			}
+		}
 	}
 }
-
 
 client.once('ready', () => {
 	console.log(`Ready! Logged in as ${client.user.tag}`);

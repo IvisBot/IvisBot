@@ -1,11 +1,11 @@
 const { EmbedBuilder } = require('discord.js');
 const mongoose = require('mongoose');
-const Level = require('../models/level.model');
-const { CLIENT_ID, XP_COOLDOWN } = require('../config.json');
+const Level = require('../../models/level.model');
+const { CLIENT_ID, XP_COOLDOWN } = require('../../config.json');
 
 const {CommandCooldown, msToMinutes} = require('discord-command-cooldown');
 const ms = require('ms');
-const levelModel = require('../models/level.model');
+const levelModel = require('../../models/level.model');
 
 const earnXpCooldown = new CommandCooldown('earnXp', ms(XP_COOLDOWN));
 
