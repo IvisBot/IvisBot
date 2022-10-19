@@ -31,6 +31,27 @@ This Bot plans to cover as many fields as possible to reach as many customers as
     - [ ] Create leaderboard.js #using canva.js
 
 - [ ] Make a log system #Simplified and used by moderation
+  - [ ] Channel events
+    - [ ] channelCreate.js
+    - [ ] channelDelete.js
+    - [ ] channelUpdate.js
+  - [ ] guild events
+    - [ ] emoji events
+      - [ ] guildEmojiCreate.js
+      - [ ] guildEmojiDelete.js
+      - [ ] guildEmojiUpdate.js
+    - [ ] role events
+      - [ ] guildRoleCreate.js
+      - [ ] guildRoleDelete.js
+      - [ ] guildRoleUpdate.js
+    - [ ] guildUpdate.js
+  - [ ] message events
+    - [ ] messageDelete.js
+    - [ ] messageDeleteBulk.js
+    - [ ] messageUpdate.js
+  - [ ] voice events
+    - [ ] voiceStateUpdate.js
+  - [ ] interactionCreate.js
 
 ### In Progress
 
@@ -48,6 +69,12 @@ This Bot plans to cover as many fields as possible to reach as many customers as
 
 - [ ] Make events
   - [ ] Send a random message to new users
+
+- [ ] Make a log system #Simplified and used by moderation
+  - [ ] guild events
+    - [ ] member events
+      - [ ] guildMemberAdd.js
+      - [ ] guildMemberRemove.js
 
 ### Done ✓
 
