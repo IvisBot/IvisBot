@@ -44,7 +44,7 @@ This Bot plans to cover as many fields as possible to reach as many customers as
   - [ ] level commands
     - [ ] Create rank.js #Make it with canva.js
   - [ ] fun commands
-    - [ ] Create fun.js #Make it with teemo.js
+    - [ ] Create lol.js #Make it with teemo.js
 
 - [ ] Make events
   - [ ] Send a random message to new users
