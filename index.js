@@ -7,6 +7,7 @@ const { DATABASE_URI, TOKEN } = require('./config.json');
 
 const mongoose = require('mongoose');
 
+// Client
 const client = new Client({
   intents: [
     GatewayIntentBits.Guilds,
@@ -16,6 +17,7 @@ const client = new Client({
   ]
 });
 
+// database connection
 mongoose.connect(DATABASE_URI, {
 	autoIndex: false, // Don't build indexes
 	maxPoolSize: 10, // Maintain up to 10 socket connections
@@ -25,7 +27,7 @@ mongoose.connect(DATABASE_URI, {
 }).then(() => { console.log('Successfully connected to the database !') })
 .catch(err => { console.log(err) });
 
-
+//commands handler
 client.commands = new Collection();
 const commandsPathInit = path.join(__dirname, 'commands');
 
@@ -40,6 +42,7 @@ for (const folder of fs.readdirSync(commandsPathInit)) {
 	}
 }
 
+//events handler
 const eventsPathInit = path.join(__dirname, 'events');
 
 for (const folder1 of fs.readdirSync(eventsPathInit)) {
