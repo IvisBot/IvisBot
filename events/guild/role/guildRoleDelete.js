@@ -9,11 +9,11 @@ module.exports = {
             type: AuditLogEvent.RoleDelete,
         });
 
-        const RoleDeletionLog = fetchedLogs.entries.first();
+        const RoleDeleteLog = fetchedLogs.entries.first();
 
         const RoleDeletedEmbed = new EmbedBuilder()
             .setColor(role.hexColor)
-            .setDescription(`<@${RoleDeletionLog.executor.id}> has deleted a role.`)
+            .setDescription(`<@${RoleDeleteLog.executor.id}> has deleted a role.`)
             .addFields(
                 {
                     name: "**Name:**",
@@ -25,7 +25,7 @@ module.exports = {
                 },
                 {
                     name: "**ID:**",
-                    value: `\`\`\`ini\nRoleID = ${role.id}\nExecutorID = ${RoleDeletionLog.executor.id}\`\`\``
+                    value: `\`\`\`ini\nRoleID = ${role.id}\nExecutorID = ${RoleDeleteLog.executor.id}\`\`\``
                 }
             )
 

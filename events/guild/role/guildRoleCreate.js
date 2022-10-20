@@ -9,11 +9,11 @@ module.exports = {
             type: AuditLogEvent.RoleCreate,
         });
 
-        const RoleCreationLog = fetchedLogs.entries.first();
+        const RoleCreateLog = fetchedLogs.entries.first();
 
         const roleCreatedEmbed = new EmbedBuilder()
             .setColor(role.hexColor)
-            .setDescription(`<@${roleCreationLog.executor.id}> has created a role.`)
+            .setDescription(`<@${RoleCreateLog.executor.id}> has created a role.`)
             .addFields(
                 {
                     name: "**Name:**",
@@ -25,7 +25,7 @@ module.exports = {
                 },
                 {
                     name: "**ID:**",
-                    value: `\`\`\`ini\nRoleID = ${role.id}\nExecutorID = ${roleCreationLog.executor.id}\`\`\``
+                    value: `\`\`\`ini\nRoleID = ${role.id}\nExecutorID = ${RoleCreateLog.executor.id}\`\`\``
                 }
             )
 
