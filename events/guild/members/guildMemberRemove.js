@@ -15,11 +15,11 @@ module.exports = {
                 },
                 {
                     name: "**Joined the:**",
-                    value: `${new Date(member.joinedAt).toUTCString()} (${Math.abs(((new Date().getTime() - member.joinedAt) / 1000 / 60 / 60 / 24)).toFixed(0)} jours)`
+                    value: `${new Date(member.joinedAt).toUTCString()} (${Math.abs(((new Date().getTime() - member.joinedAt) / 1000 / 60 / 60 / 24)).toFixed(0)} days)`
                 },
                 {
                     name: "**Account created the:**",
-                    value: `${new Date(member.user.createdAt).toUTCString()} (${Math.abs(((new Date().getTime() - member.user.createdAt) / 1000 / 60 / 60 / 24)).toFixed(0)} jours`
+                    value: `${new Date(member.user.createdAt).toUTCString()} (${Math.abs(((new Date().getTime() - member.user.createdAt) / 1000 / 60 / 60 / 24)).toFixed(0)} days`
                 },
                 {
                     name: "**ID:**",
