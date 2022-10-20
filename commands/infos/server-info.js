@@ -1,5 +1,5 @@
 const { SlashCommandBuilder, EmbedBuilder } = require('discord.js');
-const { SERVER_DESCRIPTION, BOT_LOGO, BOT_TEXTFOOTE, BOT_LINKFOOTER } = require('../../config.json');
+const { SERVER_DESCRIPTION, BOT_LOGO, BOT_TEXTFOOTER, BOT_LINKFOOTER } = require('../../config.json');
 
 module.exports = {
 	data: new SlashCommandBuilder()
@@ -53,7 +53,7 @@ module.exports = {
 			)
 			.setAuthor({ name: 'Ivis', iconURL: 'https://i.imgur.com/AfFp7pu.png', url: 'https://discord.js.org' })
 			.setTimestamp()
-			.setFooter({ text: BOT_TEXTFOOTE, iconURL: BOT_LOGO, url: BOT_LINKFOOTER });
+			.setFooter({ text: BOT_TEXTFOOTER, iconURL: BOT_LOGO, url: BOT_LINKFOOTER });
 		
 		if (icon) {
 			serverInfoEmbed.setImage(icon)

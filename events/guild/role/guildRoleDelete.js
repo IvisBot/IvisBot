@@ -1,4 +1,4 @@
-const { LOG_MODS, BOT_LOGO, BOT_TEXTFOOTE, BOT_LINKFOOTER } = require('../../../config.json');
+const { LOG_MODS, BOT_LOGO, BOT_TEXTFOOTER, BOT_LINKFOOTER } = require('../../../config.json');
 const { AuditLogEvent, EmbedBuilder } = require("discord.js");
 
 module.exports = {
@@ -28,7 +28,7 @@ module.exports = {
                     value: `\`\`\`ini\nRoleID = ${role.id}\nExecutorID = ${RoleDeleteLog.executor.id}\`\`\``
                 }
             )
-            .setFooter({ text: BOT_TEXTFOOTE, iconURL: BOT_LOGO, url: BOT_LINKFOOTER });
+            .setFooter({ text: BOT_TEXTFOOTER, iconURL: BOT_LOGO, url: BOT_LINKFOOTER });
 
     await role.guild.channels.cache.get(LOG_MODS).send({embeds: [RoleDeletedEmbed]})
     }

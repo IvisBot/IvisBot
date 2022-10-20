@@ -1,4 +1,4 @@
-const { RIOT_API, BOT_LOGO, BOT_TEXTFOOTE, BOT_LINKFOOTER } = require('../../config.json');
+const { RIOT_API, BOT_LOGO, BOT_TEXTFOOTER, BOT_LINKFOOTER } = require('../../config.json');
 const { SlashCommandBuilder, EmbedBuilder } = require('discord.js');
 const axios = require('axios');
 
@@ -29,12 +29,13 @@ module.exports = {
 				//{name: 'Rank Solo/Duo Q', value: rank.data[0].tier+" : "+rank.data[0].rank , inline: true},
 				//{name: 'Rank Flex Q', value: rank.data[1].tier+" : "+rank.data[1].rank, inline: true},
 				)
-			for (r in rank.length) {
+			for (r in rank.data.length) {
+				console.log(r);
 				lolAmbed.addFields(
-					{name: rank[r].queueType, value: rank[r].tier+" : "+rank[r].rank, inline: true},)}
+					{name: rank.data[r].queueType, value: rank.data[r].tier+" : "+rank.data[r].rank, inline: true},)}
 			lolAmbed.setAuthor({ name: 'Ivis', iconURL: 'https://i.imgur.com/AfFp7pu.png', url: 'https://discord.js.org' })
 			.setTimestamp()
-			.setFooter({ text: BOT_TEXTFOOTE, iconURL: BOT_LOGO, url: BOT_LINKFOOTER });
+			.setFooter({ text: BOT_TEXTFOOTER, iconURL: BOT_LOGO, url: BOT_LINKFOOTER });
 
 
 		interaction.reply({ embeds: [lolAmbed] });
