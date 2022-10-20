@@ -1,4 +1,4 @@
-const { LOG_MODS, BOT_LOGO, BOT_TEXTFOOTER, BOT_LINKFOOTER } = require('../../../config.json');
+const { LOG_MODS, BOT_LOGO, BOT_TEXTFOOTER } = require('../../../config.json');
 const { AuditLogEvent, EmbedBuilder } = require("discord.js");
 const jsdiscordperms = require("jsdiscordperms");
 
@@ -15,7 +15,7 @@ module.exports = {
         const RoleUpdatedEmbed = new EmbedBuilder()
             .setColor(role.hexColor)
             .setDescription(`<@${RoleUpdateLog.executor.id}> modified a role.`)
-            .setFooter({ text: BOT_TEXTFOOTER, iconURL: BOT_LOGO, url: BOT_LINKFOOTER });
+            .setFooter({ text: BOT_TEXTFOOTER, iconURL: BOT_LOGO });
         
         for (const i in RoleUpdateLog.changes) {
             if (RoleUpdateLog.changes[i]['key'] == 'name') {

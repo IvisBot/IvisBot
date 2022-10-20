@@ -1,6 +1,6 @@
 const Canvas = require('canvas');
 
-const { WELCOME_CHANNEL_ID, MEMBERS_TRACKING, WELCOME_MESSAGES, BOT_LOGO, BOT_TEXTFOOTER, BOT_LINKFOOTER } = require('../../../config.json');
+const { WELCOME_CHANNEL_ID, MEMBERS_TRACKING, WELCOME_MESSAGES, BOT_LOGO, BOT_TEXTFOOTER} = require('../../../config.json');
 const { AttachmentBuilder, EmbedBuilder } = require("discord.js");
 const { registerFont} = require('canvas')
 
@@ -84,7 +84,7 @@ module.exports = {
                     value: `\`\`\`ini\nMember = ${member.id}\nGuild = ${member.guild.id}\`\`\``
                 }
             )
-            .setFooter({ text: BOT_TEXTFOOTER, iconURL: BOT_LOGO, url: BOT_LINKFOOTER });
+            .setFooter({ text: BOT_TEXTFOOTER, iconURL: BOT_LOGO });
 
         await member.guild.channels.cache.get(MEMBERS_TRACKING).send({embeds: [joinEmbed]})
 	}

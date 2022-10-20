@@ -1,7 +1,7 @@
 const { EmbedBuilder } = require('discord.js');
 const mongoose = require('mongoose');
 const Level = require('../../models/level.model');
-const { CLIENT_ID, XP_COOLDOWN, BOT_LOGO, BOT_TEXTFOOTER, BOT_LINKFOOTER } = require('../../config.json');
+const { CLIENT_ID, XP_COOLDOWN, BOT_LOGO, BOT_TEXTFOOTER } = require('../../config.json');
 
 const {CommandCooldown, msToMinutes} = require('discord-command-cooldown');
 const ms = require('ms');
@@ -38,7 +38,7 @@ module.exports = {
                             .setDescription(`Congratulations ${msg.author.username}, you have leveled up to level ${levelModel.level}!`)
                             .setThumbnail(msg.author.avatarURL())
                             .setTimestamp()
-                            .setFooter({ text: BOT_TEXTFOOTER, iconURL: BOT_LOGO, url: BOT_LINKFOOTER });
+                            .setFooter({ text: BOT_TEXTFOOTER, iconURL: BOT_LOGO });
 
                         msg.reply({ embeds: [levelUpEmbed] });
                     }

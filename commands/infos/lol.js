@@ -21,21 +21,17 @@ module.exports = {
 		console.log(profile.data.summonerLevel.toString());
 
 		const lolAmbed = new EmbedBuilder()
-			.setTitle(profile.data.name)
+			.setTitle(profile.data.name+ "'s stats")
 			.setThumbnail(`https://ddragon.leagueoflegends.com/cdn/11.16.1/img/profileicon/${profile.data.profileIconId}.png`)
 			.setColor('Blue')
-			.addFields(
-				{name: 'Level', value: profile.data.summonerLevel.toString()},
-				//{name: 'Rank Solo/Duo Q', value: rank.data[0].tier+" : "+rank.data[0].rank , inline: true},
-				//{name: 'Rank Flex Q', value: rank.data[1].tier+" : "+rank.data[1].rank, inline: true},
-				)
-			for (r in rank.data.length) {
-				console.log(r);
+			.addFields({name: 'Level', value: profile.data.summonerLevel.toString()},)
+			for (var i=0; i<rank.data.length; i++){
 				lolAmbed.addFields(
-					{name: rank.data[r].queueType, value: rank.data[r].tier+" : "+rank.data[r].rank, inline: true},)}
-			lolAmbed.setAuthor({ name: 'Ivis', iconURL: 'https://i.imgur.com/AfFp7pu.png', url: 'https://discord.js.org' })
+					{name: rank.data[i].queueType, value: rank.data[i].tier+" : "+rank.data[i].rank, inline: true},)}
+
+			lolAmbed.setAuthor({ name: 'Requested by '+interaction.user.id, iconURL: 'https://i.imgur.com/AfFp7pu.png' })
 			.setTimestamp()
-			.setFooter({ text: BOT_TEXTFOOTER, iconURL: BOT_LOGO, url: BOT_LINKFOOTER });
+			.setFooter({ text: BOT_TEXTFOOTER, iconURL: BOT_LOGO});
 
 
 		interaction.reply({ embeds: [lolAmbed] });
