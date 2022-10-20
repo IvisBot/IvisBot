@@ -1,4 +1,5 @@
 const Canvas = require('canvas');
+
 const { WELCOME_CHANNEL_ID, MEMBERS_TRACKING, WELCOME_MESSAGES } = require('../../../config.json');
 const { AttachmentBuilder, EmbedBuilder } = require("discord.js");
 const { registerFont} = require('canvas')
@@ -57,24 +58,24 @@ module.exports = {
 
         const joinEmbed = new EmbedBuilder()
             .setColor("#00ff00")
-            .setDescription(`<@${member.id}> a rejoint le serveur.`)
+            .setDescription(`<@${member.id}> join the server.`)
             .setThumbnail(member.user.avatarURL())
             .addFields(
                 {
-                    name: "**Nom:**",
+                    name: "**Username:**",
                     value: `${member.user.username}` + "#" + `${member.user.discriminator}`
                 },
                 {
-                    name: "**A rejoint le:**",
+                    name: "**Joined the:**",
                     value: `<t:${Math.round((new Date()).getTime() / 1000)}:f>`
                 },
                 {
-                    name: "**Âge du compte:**",
+                    name: "**Account age:**",
                     value: `**${Math.floor((new Date() - member.user.createdAt) / 86400000)}** days`,
                     inline: true
                 },
                 {
-                    name: "**Nombre de membre sur le serveur:**",
+                    name: "**Member cout:**",
                     value: `${member.guild.memberCount}`,
                     inline: true
                 },
