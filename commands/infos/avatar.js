@@ -1,4 +1,5 @@
 const { SlashCommandBuilder, EmbedBuilder } = require('discord.js');
+const { BOT_LOGO, BOT_TEXTFOOTE, BOT_LINKFOOTER } = require('../../config.json');
 
 module.exports = {
 	data: new SlashCommandBuilder()
@@ -19,7 +20,7 @@ module.exports = {
 			.setAuthor({ name: 'Ivis', iconURL: 'https://i.imgur.com/AfFp7pu.png', url: 'https://discord.js.org' })
 			.setImage(avatar)
 			.setTimestamp()
-			.setFooter({ text: 'IvisBot, A fully modular Discord Bot', iconURL: 'https://i.imgur.com/AfFp7pu.png' });
+			.setFooter({ text: BOT_TEXTFOOTE, iconURL: BOT_LOGO, url: BOT_LINKFOOTER });
 		
 		interaction.reply({ embeds: [avatarEmbed] });
 	},
