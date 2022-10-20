@@ -36,10 +36,6 @@ This Bot plans to cover as many fields as possible to reach as many customers as
     - [ ] channelDelete.js
     - [ ] channelUpdate.js
   - [ ] guild events
-    - [ ] emoji events
-      - [ ] guildEmojiCreate.js
-      - [ ] guildEmojiDelete.js
-      - [ ] guildEmojiUpdate.js
     - [ ] role events
       - [ ] guildRoleCreate.js
       - [ ] guildRoleDelete.js
@@ -72,9 +68,11 @@ This Bot plans to cover as many fields as possible to reach as many customers as
 
 - [ ] Make a log system #Simplified and used by moderation
   - [ ] guild events
-    - [ ] member events
-      - [ ] guildMemberAdd.js
-      - [ ] guildMemberRemove.js
+    - [ ] emoji events
+      - [ ] guildEmojiCreate.js
+      - [ ] guildEmojiDelete.js
+      - [ ] guildEmojiUpdate.js
+    
 
 ### Done ✓
 
@@ -99,4 +97,8 @@ This Bot plans to cover as many fields as possible to reach as many customers as
 
 - [ ] Make events
   - [x] Send a welcome banner #Using canva.js
+  - [ ] guild events
+    - [x] member events
+      - [x] guildMemberAdd.js
+      - [x] guildMemberRemove.js
 
