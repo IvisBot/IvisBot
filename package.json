@@ -24,6 +24,7 @@
     "discord.js": "^14.6.0",
     "eslint": "^8.25.0",
     "js": "^0.1.0",
+    "jsdiscordperms": "github:PgBiel/jsdiscordperms",
     "mongoose": "^6.6.5",
     "ms": "^2.1.3",
     "pango": "^0.0.3"
