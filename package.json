@@ -27,6 +27,7 @@
     "jsdiscordperms": "github:PgBiel/jsdiscordperms",
     "mongoose": "^6.6.5",
     "ms": "^2.1.3",
-    "pango": "^0.0.3"
+    "pango": "^0.0.3",
+    "request": "^2.88.2"
   }
 }
