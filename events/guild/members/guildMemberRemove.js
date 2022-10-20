@@ -1,4 +1,4 @@
-const { MEMBERS_TRACKING } = require('../../../config.json');
+const { MEMBERS_TRACKING, BOT_LOGO, BOT_TEXTFOOTE, BOT_LINKFOOTER} = require('../../../config.json');
 const { EmbedBuilder } = require("discord.js");
 
 module.exports = {
@@ -26,6 +26,8 @@ module.exports = {
                     value: `\`\`\`ini\nUser = ${member.id}\`\`\``
                 }
             )
+            .setFooter({ text: BOT_TEXTFOOTE, iconURL: BOT_LOGO, url: BOT_LINKFOOTER });
+            
         member.guild.channels.cache.get(MEMBERS_TRACKING).send({embeds: [leaveEmbed]});
     }
 }
