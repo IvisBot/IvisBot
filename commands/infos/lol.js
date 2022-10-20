@@ -1,8 +1,7 @@
 const { RIOT_API } = require('../../config.json');
 const { SlashCommandBuilder, EmbedBuilder } = require('discord.js');
+const axios = require('axios');
 
-const TeemoJS = require('teemojs');
-let api = TeemoJS(RIOT_API);
 
 module.exports = {
 	data: new SlashCommandBuilder()
@@ -10,29 +9,31 @@ module.exports = {
 		.setDescription('Give league of legends informations about a player.')
 		.addStringOption(option => option.setName('player').setDescription('The player nickname').setRequired(true)),
 	async execute(interaction) {
-      
-        var sumonerName;
-        api.get('euw1', 'summoner.getBySummonerName', interaction.options.getString('player'))
-            .then((data) => {
-                try { interaction.reply({ content: data["name"]});
-                } catch (error) { 
-                    console.log(error); 
-                    interaction.reply({ content:"Player not found", ephemeral: true});}
-            })
 
-        
-        /*
-		const avatarEmbed = new EmbedBuilder()
-			.setColor('Purple')
-			.setTitle(username)
-			.setURL(avatar)
-			.setAuthor({ name: 'Ivis', iconURL: 'https://i.imgur.com/AfFp7pu.png', url: 'https://discord.js.org' })
-			.setImage(avatar)
-			.setTimestamp()
-			.setFooter({ text: 'IvisBot, A fully modular Discord Bot', iconURL: 'https://i.imgur.com/AfFp7pu.png' });
+		const profile = await axios.get(`https://euw1.api.riotgames.com/lol/summoner/v4/summoners/by-name/${interaction.options.getString('player')}?api_key=${RIOT_API}`);
+		const masteries = await axios.get(`https://euw1.api.riotgames.com/lol/champion-mastery/v4/champion-masteries/by-summoner/${profile.data.id}?api_key=${RIOT_API}`);
 		
-		interaction.reply({ embeds: [avatarEmbed] });
-        */
+		const rank = await axios.get(`https://euw1.api.riotgames.com/lol/league/v4/entries/by-summoner/${profile.data.id}?api_key=${RIOT_API}`);
+
+		console.log(profile.data);
+		console.log(masteries.data[0,3]);
+
+		console.log(profile.data.summonerLevel);
+		const lolAmbed = new EmbedBuilder()
+			.setTitle(profile.data.name)
+			.setThumbnail(`https://ddragon.leagueoflegends.com/cdn/11.16.1/img/profileicon/${profile.data.profileIconId}.png`)
+			.setColor('Blue')
+			.addFields(
+				{name: 'Level', value: "sdf"},
+				)
+			.setAuthor({ name: 'Ivis', iconURL: 'https://i.imgur.com/AfFp7pu.png', url: 'https://discord.js.org' })
+			.setTimestamp()
+			.setFooter({ text: 'IvisBot, A fully modular Discord Bot', iconURL: 'https://i.imgur.com/AfFp7pu.png' })
+
+
+		interaction.reply({ embeds: [lolAmbed] });
+		
+    
 	},
 
 };
