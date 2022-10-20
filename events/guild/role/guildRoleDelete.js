@@ -2,33 +2,33 @@ const { LOG_MODS } = require('../../../config.json');
 const { AuditLogEvent, EmbedBuilder } = require("discord.js");
 
 module.exports = {
-    name : 'roleCreate',
+    name : 'roleDelete',
     async execute(role) {
         const fetchedLogs = await role.guild.fetchAuditLogs({
             limit: 1,
-            type: AuditLogEvent.RoleCreate,
+            type: AuditLogEvent.RoleDelete,
         });
 
-        const RoleCreationLog = fetchedLogs.entries.first();
+        const RoleDeletionLog = fetchedLogs.entries.first();
 
-        const roleCreatedEmbed = new EmbedBuilder()
+        const RoleDeletedEmbed = new EmbedBuilder()
             .setColor(role.hexColor)
-            .setDescription(`<@${roleCreationLog.executor.id}> has created a role.`)
+            .setDescription(`<@${RoleDeletionLog.executor.id}> has deleted a role.`)
             .addFields(
                 {
                     name: "**Name:**",
                     value: `${role.name}`
                 },
                 {
-                    name: "**Cole:**",
+                    name: "**Color:**",
                     value: `base 10: ${role.color} | base 16: ${role.hexColor}`
                 },
                 {
                     name: "**ID:**",
-                    value: `\`\`\`ini\nRoleID = ${role.id}\nExecutorID = ${roleCreationLog.executor.id}\`\`\``
+                    value: `\`\`\`ini\nRoleID = ${role.id}\nExecutorID = ${RoleDeletionLog.executor.id}\`\`\``
                 }
             )
 
-        await role.guild.channels.cache.get(LOG_MODS).send({embeds: [roleCreatedEmbed]})
+    await role.guild.channels.cache.get(LOG_MODS).send({embeds: [RoleDeletedEmbed]})
     }
-};
+}
