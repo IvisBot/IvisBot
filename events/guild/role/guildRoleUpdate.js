@@ -5,7 +5,6 @@ const jsdiscordperms = require("jsdiscordperms");
 module.exports = {
     name : 'roleUpdate',
     async execute (role) {
-        console.log("salut");
         const fetchedLogs = await role.guild.fetchAuditLogs({
             limit: 1,
             type: AuditLogEvent.RoleUpdate,
@@ -39,7 +38,7 @@ module.exports = {
                     }
                 }
 
-                RoleUpdatedEmbed.addFields( {name: "**Permissions:**", value: `\`\`\`ini\n${changedpermissions.join("\n")}\`\`\``} );
+                RoleUpdatedEmbed.addFields( {name: "**Permissions:**", value: `\`\`\`diff\n${changedpermissions.join("\n")}\`\`\``} );
             }
         }
 
