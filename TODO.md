@@ -64,10 +64,11 @@ This Bot plans to cover as many fields as possible to reach as many customers as
 
 - [ ] Make a log system #Simplified and used by moderation
   - [ ] guild events
-    - [ ] role events
-      - [ ] guildRoleCreate.js
-      - [ ] guildRoleDelete.js
-      - [ ] guildRoleUpdate.js
+    - [ ] emoji events
+      - [ ] guildEmojiCreate.js
+      - [ ] guildEmojiRemove.js
+      - [ ] guildEmojiUpdate.js
+
     
 
 ### Done ✓
@@ -97,4 +98,8 @@ This Bot plans to cover as many fields as possible to reach as many customers as
     - [x] member events
       - [x] guildMemberAdd.js
       - [x] guildMemberRemove.js
+    - [x] role events
+      - [x] guildRoleCreate.js
+      - [x] guildRoleDelete.js
+      - [x] guildRoleUpdate.js
 
