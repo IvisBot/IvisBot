@@ -7,25 +7,27 @@ module.exports = {
 	data: new SlashCommandBuilder()
 		.setName('lol')
 		.setDescription('Give league of legends informations about a player.')
-		.addStringOption(option => option.setName('player').setDescription('The player nickname').setRequired(true)),
+		.addStringOption(option => option.setName('player').setDescription('The player nickname').setRequired(true))
+		.addStringOption(option => option.setName('region').setDescription('The region').setRequired(false)),
 	async execute(interaction) {
 
-		const region = 'euw1';
+		var player = interaction.options.getString('player');
+		var region = interaction.options.getString('region');
+		if (region == null) {
+			region = 'euw1';
+		}
 
 		try {
-			var profile = await axios.get(`https://${region}.api.riotgames.com/lol/summoner/v4/summoners/by-name/${interaction.options.getString('player')}?api_key=${RIOT_API}`);
+			var profile = await axios.get(`https://${region}.api.riotgames.com/lol/summoner/v4/summoners/by-name/${player}?api_key=${RIOT_API}`);
 		}
 		catch (error) {
 			console.error(error);
-			return interaction.reply({ content: 'Player not found', ephemeral: true });
+			return interaction.reply({ content: `No player nammed ${player} on ${region}`, ephemeral: true });
 		}
 		
 		const masteries = await axios.get(`https://${region}.api.riotgames.com/lol/champion-mastery/v4/champion-masteries/by-summoner/${profile.data.id}?api_key=${RIOT_API}`);
 		const rank = await axios.get(`https://${region}.api.riotgames.com/lol/league/v4/entries/by-summoner/${profile.data.id}?api_key=${RIOT_API}`);
-		console.log(profile.data);
-		console.log(rank.data)
 		const bestMasteries = masteries.data.slice(0,3);
-		console.log(bestMasteries);
 
 		const lolAmbed = new EmbedBuilder()
 			.setTitle("🧙 "+profile.data.name+ "'s stats")
