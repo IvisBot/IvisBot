@@ -22,7 +22,7 @@
     "discord": "^0.8.2",
     "discord-command-cooldown": "^1.0.8",
     "discord.js": "^14.6.0",
-    "eslint": "^8.25.0",
+    "eslint": "^8.26.0",
     "js": "^0.1.0",
     "jsdiscordperms": "github:PgBiel/jsdiscordperms",
     "mongoose": "^6.6.5",
