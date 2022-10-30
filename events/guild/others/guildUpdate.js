@@ -12,26 +12,57 @@ module.exports = {
 
         const GuildUpdateLog = fetchedLogs.entries.first();
 
+        console.log(GuildUpdateLog);
+
         const GuildUpdatedEmbed = new EmbedBuilder()
             .setColor("LightGrey")
             .setDescription(`<@${GuildUpdateLog.executor.id}> updated the server.`)
             .setFooter({ text: BOT_TEXTFOOTER, iconURL: BOT_LOGO })
 
         for (const i in GuildUpdateLog.changes) {
-            if (GuildUpdateLog.changes[i].key == "name") {
-                GuildUpdatedEmbed.addFields( {name : "Name", value : `\`\`\`ini\nOld_name = ${GuildUpdateLog.changes[i]['old']}\nNew_name = ${GuildUpdateLog.changes[i]['new']}\`\`\``} )
-            } else if (GuildUpdateLog.changes[i].key == "icon_hash") {
-                GuildUpdatedEmbed.addFields( {name : "Icon", value : `\`\`\`ini\nOld_icon = ${GuildUpdateLog.changes[i]['old']}\nNew_icon = ${GuildUpdateLog.changes[i]['new']}\`\`\``} )
-            } else if (GuildUpdateLog.changes[i].key == "splash_hash") {
-                GuildUpdatedEmbed.addFields( {name : "Splash", value : `\`\`\`ini\nOld_splash = ${GuildUpdateLog.changes[i]['old']}\nNew_splash = ${GuildUpdateLog.changes[i]['new']}\`\`\``} )
-            } else if (GuildUpdateLog.changes[i].key == "discovery_splash_hash") {
-                GuildUpdatedEmbed.addFields( {name : "Discovery Splash", value : `\`\`\`ini\nOld_discovery_splash = ${GuildUpdateLog.changes[i]['old']}\nNew_discovery_splash = ${GuildUpdateLog.changes[i]['new']}\`\`\``} )
-            } else if (GuildUpdateLog.changes[i].key == "banner_hash") {
-                GuildUpdatedEmbed.addFields( {name : "Banner", value : `\`\`\`ini\nOld_banner = ${GuildUpdateLog.changes[i]['old']}\nNew_banner = ${GuildUpdateLog.changes[i]['new']}\`\`\``} )
-            } else if (GuildUpdateLog.changes[i].key == "owner_id") {
-                GuildUpdatedEmbed.addFields( {name : "Owner", value : `\`\`\`ini\nOld_owner = ${GuildUpdateLog.changes[i]['old']}\nNew_owner = ${GuildUpdateLog.changes[i]['new']}\`\`\``} )
-            } else if (GuildUpdateLog.changes[i].key == "region") {
-                GuildUpdatedEmbed.addFields( {name : "Region", value : `\`\`\`ini\nOld_region = ${GuildUpdateLog.changes[i]['old']}\nNew_region = ${GuildUpdateLog.changes[i]['new']}\`\`\``} )
+            switch (GuildUpdateLog.changes[i].key) {
+                case "name":
+                    GuildUpdatedEmbed.addFields( {name : "Name", value : `\`\`\`ini\nOld_name = ${GuildUpdateLog.changes[i]['old']}\nNew_name = ${GuildUpdateLog.changes[i]['new']}\`\`\``} )
+                    break;
+                case "owner_id":
+                    GuildUpdatedEmbed.addFields( {name : "Owner", value : `\`\`\`ini\nOld_owner = ${GuildUpdateLog.changes[i]['old']}\nNew_owner = ${GuildUpdateLog.changes[i]['new']}\`\`\``} )
+                    break;
+                case "region":
+                    GuildUpdatedEmbed.addFields( {name : "Region", value : `\`\`\`ini\nOld_region = ${GuildUpdateLog.changes[i]['old']}\nNew_region = ${GuildUpdateLog.changes[i]['new']}\`\`\``} )
+                    break;
+                case "afk_channel_id":
+                    GuildUpdatedEmbed.addFields( {name : "AFK Channel", value : `\`\`\`ini\nOld_channel = ${GuildUpdateLog.changes[i]['old']}\nNew_channel = ${GuildUpdateLog.changes[i]['new']}\`\`\``} )
+                    break;
+                case "afk_timeout":
+                    GuildUpdatedEmbed.addFields( {name : "AFK Timeout", value : `\`\`\`ini\nOld_timeout = ${GuildUpdateLog.changes[i]['old']}\nNew_timeout = ${GuildUpdateLog.changes[i]['new']}\`\`\``} )
+                    break;
+                case "system_channel_id":
+                    GuildUpdatedEmbed.addFields( {name : "System Channel", value : `\`\`\`ini\nOld_channel = ${GuildUpdateLog.changes[i]['old']}\nNew_channel = ${GuildUpdateLog.changes[i]['new']}\`\`\``} )
+                    break;
+                case "mfa_level":
+                    GuildUpdatedEmbed.addFields( {name : "MFA Level", value : `\`\`\`ini\nOld_level = ${GuildUpdateLog.changes[i]['old']}\nNew_level = ${GuildUpdateLog.changes[i]['new']}\`\`\``} )
+                    break;
+                case "verification_level":
+                    GuildUpdatedEmbed.addFields( {name : "Verification Level", value : `\`\`\`ini\nOld_level = ${GuildUpdateLog.changes[i]['old']}\nNew_level = ${GuildUpdateLog.changes[i]['new']}\`\`\``} )
+                    break;
+                case "explicit_content_filter":
+                    GuildUpdatedEmbed.addFields( {name : "Explicit Content Filter", value : `\`\`\`ini\nOld_filter = ${GuildUpdateLog.changes[i]['old']}\nNew_filter = ${GuildUpdateLog.changes[i]['new']}\`\`\``} )
+                    break;
+                case "default_message_notifications":
+                    GuildUpdatedEmbed.addFields( {name : "Default Message Notifications", value : `\`\`\`ini\nOld_notifications = ${GuildUpdateLog.changes[i]['old']}\nNew_notifications = ${GuildUpdateLog.changes[i]['new']}\`\`\``} )
+                    break;
+                case "vanity_url_code":
+                    GuildUpdatedEmbed.addFields( {name : "Vanity URL Code", value : `\`\`\`ini\nOld_code = ${GuildUpdateLog.changes[i]['old']}\nNew_code = ${GuildUpdateLog.changes[i]['new']}\`\`\``} )
+                    break;
+                case "icon_hash":
+                    GuildUpdatedEmbed.addFields( {name : "Icon Hash", value : `\`\`\`ini\nOld_hash = ${GuildUpdateLog.changes[i]['old']}\nNew_hash = ${GuildUpdateLog.changes[i]['new']}\`\`\``} )
+                    break;
+                case "banner_hash":
+                    GuildUpdatedEmbed.addFields( {name : "Banner Hash", value : `\`\`\`ini\nOld_hash = ${GuildUpdateLog.changes[i]['old']}\nNew_hash = ${GuildUpdateLog.changes[i]['new']}\`\`\``} )
+                    break;
+                default :
+                    GuildUpdatedEmbed.addFields( {name : "Unknown", value : `\`\`\`ini\nOld = ${GuildUpdateLog.changes[i]['old']}\nNew = ${GuildUpdateLog.changes[i]['new']}\`\`\``} )
+                    break;
             }
         }
 
