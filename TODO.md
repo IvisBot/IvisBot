@@ -8,8 +8,6 @@ This Bot plans to cover as many fields as possible to reach as many customers as
 
 - [ ] Make a readme.md
 
-- [ ] Make a music bot system
-
 - [ ] Make commands
   - [ ] info commands
     - [ ] Create user-info.js
@@ -59,7 +57,8 @@ This Bot plans to cover as many fields as possible to reach as many customers as
 
 - [ ] Make events
   - [ ] Send a random message to new users
-    
+
+- [ ] Make a music bot system    
 
 ### Done ✓
 
@@ -84,7 +83,7 @@ This Bot plans to cover as many fields as possible to reach as many customers as
 
 - [ ] Make events
   - [x] Send a welcome banner #Using canva.js
-  - [ ] guild events
+  - [x] guild events
     - [x] member events
       - [x] guildMemberAdd.js
       - [x] guildMemberRemove.js
@@ -97,5 +96,5 @@ This Bot plans to cover as many fields as possible to reach as many customers as
       - [x] guildEmojiRemove.js
       - [x] guildEmojiUpdate.js
     - [x] other events
-      - [ ] guildUpdate.js
+      - [x] guildUpdate.js
 
