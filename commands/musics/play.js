@@ -79,8 +79,8 @@ module.exports = {
                 .setThumbnail(`${playlist.thumbnail}.jpg`)
                 .setFooter({text: `duration: ${playlist.duration}`});
             
-        } else if (interaction.options.getSubcommand() === 'searchterms') {
-            let url = interaction.options.getString('url');
+        } else if (interaction.options.getSubcommand() === 'search') {
+            let url = interaction.options.getString('searchterms');
 
             const result  = await client.player.search( url, {
                 requestedBy: interaction.user,
@@ -88,8 +88,7 @@ module.exports = {
             });
 
             if(result.tracks.length === 0) {
-                await interaction.reply({content: 'No results found!', ephemeral: true});
-                return;
+                return interaction.reply({content: 'No results found!', ephemeral: true});
             };
 
             const song = result.tracks[0];
