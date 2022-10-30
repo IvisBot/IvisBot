@@ -59,12 +59,6 @@ This Bot plans to cover as many fields as possible to reach as many customers as
 
 - [ ] Make events
   - [ ] Send a random message to new users
-
-- [ ] Make a log system #Simplified and used by moderation
-  - [ ] guild events
-    - [ ] guildUpdate.js
-
-
     
 
 ### Done ✓
@@ -102,4 +96,6 @@ This Bot plans to cover as many fields as possible to reach as many customers as
       - [x] guildEmojiCreate.js
       - [x] guildEmojiRemove.js
       - [x] guildEmojiUpdate.js
+    - [x] other events
+      - [ ] guildUpdate.js
 
