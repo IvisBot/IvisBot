@@ -52,13 +52,19 @@ This Bot plans to cover as many fields as possible to reach as many customers as
     - [ ] Create ping.js #Make it more beautiful
   - [ ] level commands
     - [ ] Create rank.js #Make it with canva.js
-  - [ ] fun commands
+  - [ ] music commands
+    - [ ] Create skip.js
+    - [ ] Create resume.js
+    - [ ] Create queue.js
+    - [ ] Create pause.js
+    - [ ] Create exist.js
+  - [ ] infos commands
     - [ ] Create lol.js #Make it with teemo.js
 
 - [ ] Make events
   - [ ] Send a random message to new users
 
-- [ ] Make a music bot system    
+- [ ] Make a music bot system  
 
 ### Done ✓
 
@@ -73,11 +79,15 @@ This Bot plans to cover as many fields as possible to reach as many customers as
   - [ ] level commands
     - [x] Create resetlevel.js
     - [x] Create addlevel.js
+  - [ ] music commands
+    - [x] Create play.js
 
 - [x] Connexion to the database #Using mongoose.js
 
 - [x] Make a level bot system
   - [x] give xp to user when he writes
+
+- [x] Make a music bot system  
 
 - [x] Make an handler system
 

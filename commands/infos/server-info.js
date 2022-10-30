@@ -5,7 +5,7 @@ module.exports = {
 	data: new SlashCommandBuilder()
 		.setName('server-info')
 		.setDescription('Display info about this server.'),
-	async execute(interaction) {
+	async execute({ client, interaction }) {
 
 		console.log("salut");
 

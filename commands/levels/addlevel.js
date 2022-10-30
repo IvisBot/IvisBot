@@ -14,7 +14,7 @@ module.exports = {
             .setName('amount')
             .setDescription('The amount of level to add')
             .setRequired(true)),
-    async execute(interaction) {
+    async execute({ client, interaction }) {
         const pseudo = interaction.options.getUser('pseudo');
         const amount = interaction.options.getInteger('amount');
 
