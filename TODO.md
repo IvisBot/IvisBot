@@ -16,15 +16,6 @@ This Bot plans to cover as many fields as possible to reach as many customers as
     - [ ] Create kick.js
     - [ ] Create ban.js
     - [ ] Create mute.js
-  - [ ] music commands
-    - [ ] Create join.js
-    - [ ] Create leave.js
-    - [ ] Create play.js
-    - [ ] Create pause.js
-    - [ ] Create resume.js
-    - [ ] Create queueMode.js
-    - [ ] Create volume.js
-    - [ ] Create lyrics.js
   - [ ] level commands
     - [ ] Create leaderboard.js #using canva.js
 
