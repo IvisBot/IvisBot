@@ -72,11 +72,11 @@ module.exports = {
             };
 
             const playlist = result.playlist;
-            await queue.addTrack(playlist);
+            await queue.addTracks(result.tracks)
 
             embed
                 .setDescription(`Added ${playlist.title} to the queue!`)
-                .setThumbnail(playlist.thumbnail)
+                .setThumbnail(`${playlist.thumbnail}.jpg`)
                 .setFooter({text: `duration: ${playlist.duration}`});
             
         } else if (interaction.options.getSubcommand() === 'searchterms') {
