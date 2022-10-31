@@ -13,14 +13,15 @@ module.exports = {
 
 		var player = interaction.options.getString('player');
 		var region = interaction.options.getString('region');
+		region = 'euw1';
 		if (region == null) {
 			region = 'euw1';
 		}
 
 		try {
 			var profile = await axios.get(`https://${region}.api.riotgames.com/lol/summoner/v4/summoners/by-name/${player}?api_key=${RIOT_API}`);
-		}
-		catch (error) {
+
+		}catch (error) {
 			console.error(error);
 			return interaction.reply({ content: `No player nammed ${player} on ${region}`, ephemeral: true });
 		}
@@ -44,9 +45,9 @@ module.exports = {
 
 			lolAmbed.addFields({name: '\u200B', value: "**⭐ Most played champs**", inline: false})
 			
+			const req = await axios.get('http://ddragon.leagueoflegends.com/cdn/12.20.1/data/en_US/champion.json');
 			for (var i=0; i<bestMasteries.length; i++){
 
-				const req = await axios.get('http://ddragon.leagueoflegends.com/cdn/12.20.1/data/en_US/champion.json');
 				const championList = req.data.data;
 				
 				for (var j in championList) {
@@ -55,7 +56,7 @@ module.exports = {
 						break;
 					}
 				}
-
+				console.log(champName);
 				lolAmbed.addFields({name: champName + ` (${bestMasteries[i].championLevel.toString()})`, value: `MP : ${bestMasteries[i].championPoints.toString()}`, inline: true})}
 
 			lolAmbed.setTimestamp()
@@ -63,6 +64,7 @@ module.exports = {
 
 
 		interaction.reply({ embeds: [lolAmbed] });
+
 		
 	},
 
