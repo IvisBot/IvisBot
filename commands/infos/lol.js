@@ -9,7 +9,7 @@ module.exports = {
 		.setDescription('Give league of legends informations about a player.')
 		.addStringOption(option => option.setName('player').setDescription('The player nickname').setRequired(true))
 		.addStringOption(option => option.setName('region').setDescription('The region').setRequired(false)),
-	async execute(interaction) {
+	async execute({ client, interaction }) {
 
 		var player = interaction.options.getString('player');
 		var region = interaction.options.getString('region');

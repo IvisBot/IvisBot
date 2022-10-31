@@ -3,6 +3,9 @@ const path = require('node:path');
 
 const { Client, Collection, GatewayIntentBits } = require('discord.js');
 
+const { Routes } = require('discord-api-types/v9');
+const { Player } = require('discord-player');
+
 const { DATABASE_URI, TOKEN } = require('./config.json');
 
 const mongoose = require('mongoose');
@@ -14,9 +17,12 @@ const client = new Client({
 	GatewayIntentBits.GuildMembers,
     GatewayIntentBits.GuildMessages,
     GatewayIntentBits.MessageContent,
-	GatewayIntentBits.GuildEmojisAndStickers
+	GatewayIntentBits.GuildEmojisAndStickers,
+	GatewayIntentBits.GuildVoiceStates
   ]
 });
+
+module.exports = client;
 
 // database connection
 mongoose.connect(DATABASE_URI, {
@@ -29,6 +35,7 @@ mongoose.connect(DATABASE_URI, {
 .catch(err => { console.log(err) });
 
 //commands handler
+const commands = [];
 client.commands = new Collection();
 const commandsPathInit = path.join(__dirname, 'commands');
 
@@ -40,6 +47,7 @@ for (const folder of fs.readdirSync(commandsPathInit)) {
 		const filePath = path.join(commandsPath, file);
 		const command = require(filePath);
 		client.commands.set(command.data.name, command);
+		commands.push(command.data.toJSON());
 	}
 }
 
@@ -80,6 +88,13 @@ for (const folder1 of fs.readdirSync(eventsPathInit)) {
 	}
 }
 
+client.player = new Player(client, {
+	ytdlOptions: {
+        quality: "highestaudio",
+        highWaterMark: 1 << 25
+    }
+});
+
 client.once('ready', () => {
 	console.log(`Ready! Logged in as ${client.user.tag}`);
 });
@@ -92,7 +107,7 @@ client.on('interactionCreate', async interaction => {
 	if (!command) return;
 
 	try {
-		await command.execute(interaction);
+		await command.execute({ client, interaction });
 	} catch (error) {
 		console.error(error);
 		await interaction.reply({ content: 'There was an error while executing this command!', ephemeral: true });

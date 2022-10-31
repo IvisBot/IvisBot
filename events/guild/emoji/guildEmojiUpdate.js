@@ -15,7 +15,7 @@ module.exports = {
         const EmojiUpdatedEmbed = new EmbedBuilder()
             .setColor("LightGrey")
             .setDescription(`<@${EmojiUpdateLog.executor.id}> updated an emoji.`)
-            .addFields( {name : "Name", value : `\`\`\`ini\nOld_name = ${EmojiUpdateLog.changes[0]['old']}\nNew_name = ${EmojiUpdateLog.changes[1]['new']}\`\`\``} )
+            .addFields( {name : "Name", value : `\`\`\`ini\nOld_name = ${EmojiUpdateLog.changes[0]['old']}\nNew_name = ${EmojiUpdateLog.changes[0]['new']}\`\`\``} )
             .setFooter({ text: BOT_TEXTFOOTER, iconURL: BOT_LOGO })
         
         if(emoji.animated) {
@@ -23,5 +23,7 @@ module.exports = {
         } else {
             EmojiUpdatedEmbed.setImage(`https://cdn.discordapp.com/emojis/${emoji.id}.png`);
         }
+
+        await emoji.guild.channels.cache.get(LOG_MODS).send({embeds: [EmojiUpdatedEmbed]});
     }
 }

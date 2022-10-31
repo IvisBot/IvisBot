@@ -10,7 +10,7 @@ module.exports = {
             .setName('pseudo')
             .setDescription('The member nickname')
             .setRequired(true)),
-	async execute(interaction) {
+	async execute({ client, interaction }) {
 		const pseudo = interaction.options.getUser('pseudo');
         const levelModel = await Level.findOne({ memberId: pseudo.id });
         

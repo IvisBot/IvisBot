@@ -18,28 +18,34 @@ module.exports = {
             .setFooter({ text: BOT_TEXTFOOTER, iconURL: BOT_LOGO });
         
         for (const i in RoleUpdateLog.changes) {
-            if (RoleUpdateLog.changes[i]['key'] == 'name') {
-                RoleUpdatedEmbed.addFields( {name : "Name", value : `\`\`\`ini\nOld_name = ${RoleUpdateLog.changes[i]['old']}\nNew_name = ${RoleUpdateLog.changes[i]['new']}\`\`\``} );
-            } else if (RoleUpdateLog.changes[i]['key'] == 'color') {
-                RoleUpdatedEmbed.addFields( {name : "Color", value : `\`\`\`ini\nOld_color = ${RoleUpdateLog.changes[i]['old']}\nNew_color = ${RoleUpdateLog.changes[i]['new']}\`\`\``} );
-                RoleUpdatedEmbed.setColor(RoleUpdateLog.changes[i]['new']);
-            } else if  (RoleUpdateLog.changes[i]['key'] == 'permissions') {
-                const oldpermissions = jsdiscordperms.convertPerms(RoleUpdateLog.changes[i]['old']);
-                const newpermissions = jsdiscordperms.convertPerms(RoleUpdateLog.changes[i]['new']);
-        
-                const changedpermissions = []
-        
-                for (const key in oldpermissions) {
-                    if(oldpermissions[key] !== newpermissions[key]) {
-                        if(newpermissions[key] === true) {
-                            changedpermissions.push(`+${key}`)
-                        } else {
-                            changedpermissions.push(`-${key}`)
+            
+            switch(RoleUpdateLog.changes[i].key) {
+                case "name":
+                    RoleUpdatedEmbed.addFields( {name : "Name", value : `\`\`\`ini\nOld_name = ${RoleUpdateLog.changes[i]['old']}\nNew_name = ${RoleUpdateLog.changes[i]['new']}\`\`\``} );
+                    break;
+                case "color":
+                    RoleUpdatedEmbed.addFields( {name : "Color", value : `\`\`\`ini\nOld_color = ${RoleUpdateLog.changes[i]['old']}\nNew_color = ${RoleUpdateLog.changes[i]['new']}\`\`\``} );
+                    RoleUpdatedEmbed.setColor(RoleUpdateLog.changes[i]['new']);
+                    break;
+                case "permissions":
+                    const oldpermissions = jsdiscordperms.convertPerms(RoleUpdateLog.changes[i]['old']);
+                    const newpermissions = jsdiscordperms.convertPerms(RoleUpdateLog.changes[i]['new']);
+            
+                    const changedpermissions = []
+            
+                    for (const key in oldpermissions) {
+                        if(oldpermissions[key] !== newpermissions[key]) {
+                            if(newpermissions[key] === true) {
+                                changedpermissions.push(`+${key}`)
+                            } else {
+                                changedpermissions.push(`-${key}`)
+                            }
                         }
                     }
-                }
-
-                RoleUpdatedEmbed.addFields( {name: "**Permissions:**", value: `\`\`\`diff\n${changedpermissions.join("\n")}\`\`\``} );
+                    RoleUpdatedEmbed.addFields( {name: "**Permissions:**", value: `\`\`\`diff\n${changedpermissions.join("\n")}\`\`\``} );
+                    break;
+                default :
+                    break;
             }
         }
 

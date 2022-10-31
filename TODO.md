@@ -8,8 +8,6 @@ This Bot plans to cover as many fields as possible to reach as many customers as
 
 - [ ] Make a readme.md
 
-- [ ] Make a music bot system
-
 - [ ] Make commands
   - [ ] info commands
     - [ ] Create user-info.js
@@ -17,26 +15,11 @@ This Bot plans to cover as many fields as possible to reach as many customers as
   - [ ] moderation commands
     - [ ] Create kick.js
     - [ ] Create ban.js
-    - [ ] Create mute.js
-  - [ ] music commands
-    - [ ] Create join.js
-    - [ ] Create leave.js
-    - [ ] Create play.js
-    - [ ] Create pause.js
-    - [ ] Create resume.js
-    - [ ] Create queueMode.js
-    - [ ] Create volume.js
-    - [ ] Create lyrics.js
+    - [ ] Create mute.jsn
   - [ ] level commands
     - [ ] Create leaderboard.js #using canva.js
 
 - [ ] Make a log system #Simplified and used by moderation
-  - [ ] Channel events
-    - [ ] channelCreate.js
-    - [ ] channelDelete.js
-    - [ ] channelUpdate.js
-  - [ ] guild events
-    - [ ] guildUpdate.js
   - [ ] message events
     - [ ] messageDelete.js
     - [ ] messageDeleteBulk.js
@@ -56,20 +39,13 @@ This Bot plans to cover as many fields as possible to reach as many customers as
     - [ ] Create ping.js #Make it more beautiful
   - [ ] level commands
     - [ ] Create rank.js #Make it with canva.js
-  - [ ] fun commands
+  - [ ] infos commands
     - [ ] Create lol.js #Make it with teemo.js
 
 - [ ] Make events
   - [ ] Send a random message to new users
 
-- [ ] Make a log system #Simplified and used by moderation
-  - [ ] guild events
-    - [ ] emoji events
-      - [ ] guildEmojiCreate.js
-      - [ ] guildEmojiRemove.js
-      - [ ] guildEmojiUpdate.js
-
-    
+- [ ] Make a music bot system  
 
 ### Done ✓
 
@@ -84,17 +60,30 @@ This Bot plans to cover as many fields as possible to reach as many customers as
   - [ ] level commands
     - [x] Create resetlevel.js
     - [x] Create addlevel.js
+  - [x] music commands
+    - [x] Create play.js
+    - [x] Create skip.js
+    - [x] Create resume.js
+    - [x] Create queue.js
+    - [x] Create pause.js
+    - [x] Create exit.js
 
 - [x] Connexion to the database #Using mongoose.js
 
 - [x] Make a level bot system
   - [x] give xp to user when he writes
 
+- [x] Make a music bot system  
+
 - [x] Make an handler system
 
-- [ ] Make events
+- [ ] Make events #For logs and other stuffs
   - [x] Send a welcome banner #Using canva.js
-  - [ ] guild events
+  - [x] Channel events
+    - [x] channelCreate.js
+    - [x] channelDelete.js
+    - [x] channelUpdate.js
+  - [x] guild events
     - [x] member events
       - [x] guildMemberAdd.js
       - [x] guildMemberRemove.js
@@ -102,4 +91,10 @@ This Bot plans to cover as many fields as possible to reach as many customers as
       - [x] guildRoleCreate.js
       - [x] guildRoleDelete.js
       - [x] guildRoleUpdate.js
+    - [x] emoji events
+      - [x] guildEmojiCreate.js
+      - [x] guildEmojiRemove.js
+      - [x] guildEmojiUpdate.js
+    - [x] other events
+      - [x] guildUpdate.js
 
