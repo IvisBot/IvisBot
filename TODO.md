@@ -15,7 +15,7 @@ This Bot plans to cover as many fields as possible to reach as many customers as
   - [ ] moderation commands
     - [ ] Create kick.js
     - [ ] Create ban.js
-    - [ ] Create mute.js
+    - [ ] Create mute.jsn
   - [ ] level commands
     - [ ] Create leaderboard.js #using canva.js
 
@@ -43,12 +43,6 @@ This Bot plans to cover as many fields as possible to reach as many customers as
     - [ ] Create ping.js #Make it more beautiful
   - [ ] level commands
     - [ ] Create rank.js #Make it with canva.js
-  - [ ] music commands
-    - [ ] Create skip.js
-    - [ ] Create resume.js
-    - [ ] Create queue.js
-    - [ ] Create pause.js
-    - [ ] Create exist.js
   - [ ] infos commands
     - [ ] Create lol.js #Make it with teemo.js
 
@@ -70,8 +64,13 @@ This Bot plans to cover as many fields as possible to reach as many customers as
   - [ ] level commands
     - [x] Create resetlevel.js
     - [x] Create addlevel.js
-  - [ ] music commands
+  - [x] music commands
     - [x] Create play.js
+    - [x] Create skip.js
+    - [x] Create resume.js
+    - [x] Create queue.js
+    - [x] Create pause.js
+    - [x] Create exit.js
 
 - [x] Connexion to the database #Using mongoose.js
 
