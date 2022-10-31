@@ -51,6 +51,7 @@ module.exports = {
                     value: `\`\`\`ini\nMemberID = ${ChannelCreateLog.executor.id}\nChannelID = ${ChannelCreateLog.target.id}\`\`\``
                 }
             )
+            .setFooter({ text: BOT_TEXTFOOTER, iconURL: BOT_LOGO });
         
         await channel.guild.channels.cache.get(LOG_MODS).send({embeds: [channelCreatedEmbed]})
     }
