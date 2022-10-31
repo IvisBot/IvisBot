@@ -20,10 +20,6 @@ This Bot plans to cover as many fields as possible to reach as many customers as
     - [ ] Create leaderboard.js #using canva.js
 
 - [ ] Make a log system #Simplified and used by moderation
-  - [ ] Channel events
-    - [ ] channelCreate.js
-    - [ ] channelDelete.js
-    - [ ] channelUpdate.js
   - [ ] message events
     - [ ] messageDelete.js
     - [ ] messageDeleteBulk.js
@@ -81,8 +77,12 @@ This Bot plans to cover as many fields as possible to reach as many customers as
 
 - [x] Make an handler system
 
-- [ ] Make events
+- [ ] Make events #For logs and other stuffs
   - [x] Send a welcome banner #Using canva.js
+  - [x] Channel events
+    - [x] channelCreate.js
+    - [x] channelDelete.js
+    - [x] channelUpdate.js
   - [x] guild events
     - [x] member events
       - [x] guildMemberAdd.js
