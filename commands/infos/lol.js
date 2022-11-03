@@ -55,7 +55,7 @@ module.exports = {
 			{name: 'Region', value: region.toUpperCase(), inline: true},
 			{name: '\u200B', value: '**⚔️ Ranked stats**'})
 			if (rank.data.length == 0) {
-				lolAmbed.addFields({name: 'Rank', value: 'Unranked', inline: true},);
+				lolAmbed.addFields({name: 'Rank Solo & Flex', value: 'Unranked', inline: true},);
 			}
 			else {
 				for (var i=0; i<rank.data.length; i++){
