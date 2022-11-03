@@ -33,7 +33,6 @@ module.exports = {
 			region = 'euw1';
 		}
 
-		console.log(`https://${region}.api.riotgames.com/lol/summoner/v4/summoners/by-name/${player}?api_key=${RIOT_API}`)
 		try {
 			var profile = await axios.get(`https://${region}.api.riotgames.com/lol/summoner/v4/summoners/by-name/${player}?api_key=${RIOT_API}`);
 
