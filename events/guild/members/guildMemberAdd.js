@@ -1,5 +1,4 @@
 const Canvas = require('canvas');
-
 const { WELCOME_CHANNEL_ID, MEMBERS_TRACKING, WELCOME_MESSAGES, BOT_LOGO, BOT_TEXTFOOTER} = require('../../../config.json');
 const { AttachmentBuilder, EmbedBuilder } = require("discord.js");
 const { registerFont} = require('canvas')
@@ -21,22 +20,25 @@ module.exports = {
     async execute(member) {
 
         let canvas = welcomeCanvas;
+        context = canvas.context;
 
-        canvas.context.textAlign = 'center';
-        canvas.context.font = '48px Open Sans';
-        canvas.context.fillText('Welcome', 512, 340);
-        canvas.context.font = '60px Open Sans Bold';
-        canvas.context.fillText(member.user.tag, 512,415)
-        canvas.context.font = '24px Open Sans';
-        canvas.context.fillText(`You are the ${member.guild.memberCount}th member of ${member.guild.name}`, 512,470)
-        canvas.context.beginPath()
-        canvas.context.arc(512,161,119,0, Math.PI * 2, true);
-        canvas.context.closePath()
-        canvas.context.clip()
-        await Canvas.loadImage(member.user.displayAvatarURL({extension : 'png', size :1024, dynamic: true}))
-        .then(img => {
-            canvas.context.drawImage(img,393,42,238,238)
-        })
+        context.textAlign = 'center';
+        context.font = '48px Open Sans';
+        context.fillText('Welcome', 512, 340);
+        context.font = '60px Open Sans Bold';
+        context.fillText(member.user.tag, 512,415)
+        context.font = '24px Open Sans';
+        context.fillText(`You are the ${member.guild.memberCount}th member of ${member.guild.name}`, 512,470)
+        context.beginPath()
+        context.arc(512,161,119,0, Math.PI * 2, true);
+        context.closePath()
+        context.clip()
+
+
+        const pp = await Canvas.loadImage(member.user.displayAvatarURL({extension : 'png', size :1024, dynamic: true}))
+        
+        context.drawImage(pp,393,42,238,238)
+        
         
         let atta =  new AttachmentBuilder(canvas.create.toBuffer(), {name: 'welcome.png'})
 
