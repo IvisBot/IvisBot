@@ -6,7 +6,7 @@ const wait = require('node:timers/promises').setTimeout;
 
 module.exports = {
 	data: new SlashCommandBuilder()
-		.setName('lol')
+		.setName('lol-stats')
 		.setDescription('Give league of legends informations about a player.')
 		.addStringOption(option => option.setName('player').setDescription('The player nickname').setRequired(true))
 		.addStringOption(option => option.setName('region').setDescription('The region').setRequired(false).addChoices(
