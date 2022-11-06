@@ -53,7 +53,7 @@ module.exports = {
         }
         
         try { 
-            member.guild.channels.cache.get(WELCOME_CHANNEL_ID).send({content : `Welcom ${member.user} on **${member.guild.name}**.\n${msg}`,files: [atta]})
+            member.guild.channels.cache.get(WELCOME_CHANNEL_ID).send({content : `Welcome ${member.user} on **${member.guild.name}**. ${msg}`,files: [atta]})
         } catch (error) {
             console.log(error)
         }
