@@ -4,7 +4,7 @@ const { SlashCommandBuilder, EmbedBuilder } = require('discord.js');
 
 module.exports = {
 	data: new SlashCommandBuilder()
-		.setName('pokefusion')
+		.setName('poke-fusion')
 		.setDescription('Fuse any two Pokemon of the original 151.')
 		.addStringOption(option => option.setName('pokemon1').setDescription('The first pokemon').setRequired(true))
 		.addStringOption(option => option.setName('pokemon2').setDescription('The second pokemon').setRequired(true)),
