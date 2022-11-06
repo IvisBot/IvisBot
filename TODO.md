@@ -8,6 +8,9 @@ This Bot plans to cover as many fields as possible to reach as many customers as
 
 - [ ] Make a readme.md
 
+- [ ] Rules Message # With accept reaction
+- [ ] Create a role manager channel
+
 - [ ] Make commands
   - [ ] info commands
     - [ ] Create user-info.js
@@ -40,7 +43,7 @@ This Bot plans to cover as many fields as possible to reach as many customers as
   - [ ] level commands
     - [ ] Create rank.js #Make it with canva.js
   - [ ] infos commands
-    - [ ] Create lol.js #Make it with teemo.js
+    
 
 - [ ] Make events
   - [ ] Send a random message to new users
@@ -57,6 +60,8 @@ This Bot plans to cover as many fields as possible to reach as many customers as
   - [ ] infos commands
     - [x] Create avatar.js
     - [x] Create server-info.js
+    - [x] Create lol-stats.js 
+    - [x] Create lol-rotations.js
   - [ ] level commands
     - [x] Create resetlevel.js
     - [x] Create addlevel.js
@@ -67,6 +72,8 @@ This Bot plans to cover as many fields as possible to reach as many customers as
     - [x] Create queue.js
     - [x] Create pause.js
     - [x] Create exit.js
+  - [ ] Others commands
+    - [x] Pokefusion command
 
 - [x] Connexion to the database #Using mongoose.js
 
