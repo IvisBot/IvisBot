@@ -39,15 +39,29 @@ const commands = [];
 client.commands = new Collection();
 const commandsPathInit = path.join(__dirname, 'commands');
 
-for (const folder of fs.readdirSync(commandsPathInit)) {
-	const commandsPath = path.join(__dirname, `commands/${folder}`);
-	const commandFiles = fs.readdirSync(commandsPath).filter(file => file.endsWith('.js'));
+for (const folder1 of fs.readdirSync(commandsPathInit)) {
+	const commandsPath1 = path.join(__dirname, `commands/${folder1}`);
+	const commandFiles1 = fs.readdirSync(commandsPath1).filter(file => file.endsWith('.js'));
 
-	for (const file of commandFiles) {
-		const filePath = path.join(commandsPath, file);
-		const command = require(filePath);
-		client.commands.set(command.data.name, command);
-		commands.push(command.data.toJSON());
+	if (folder1 != 'others') {
+		for (const file of commandFiles1) {
+			const filePath = path.join(commandsPath1, file);
+			const command = require(filePath);
+			client.commands.set(command.data.name, command);
+			commands.push(command.data.toJSON());
+		}
+	} else {
+		for (const folder2 of fs.readdirSync(commandsPath1)) {
+			const commandsPath2 = path.join(__dirname, `commands/${folder1}/${folder2}`);
+			const commandFiles2 = fs.readdirSync(commandsPath2).filter(file => file.endsWith('.js'));
+
+			for (const file of commandFiles2) {
+				const filePath = path.join(commandsPath2, file);
+				const command = require(filePath);
+				client.commands.set(command.data.name, command);
+				commands.push(command.data.toJSON());
+			}
+		}
 	}
 }
 
@@ -58,7 +72,7 @@ for (const folder1 of fs.readdirSync(eventsPathInit)) {
 	const eventsPath1 = path.join(__dirname, `events/${folder1}`);
 	const eventFiles1 = fs.readdirSync(eventsPath1).filter(file => file.endsWith('.js'));
 
-	if(folder1 != "guild") {
+	if (folder1 != `guild`) {
 		for (const file1 of eventFiles1) {
 			const filePath = path.join(eventsPath1, file1);
 			const event = require(filePath);

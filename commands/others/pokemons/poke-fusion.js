@@ -1,5 +1,4 @@
 const lib = require('lib')
-const { RIOT_API, BOT_LOGO, BOT_TEXTFOOTER} = require('../../config.json');
 const { SlashCommandBuilder, EmbedBuilder } = require('discord.js');
 
 module.exports = {

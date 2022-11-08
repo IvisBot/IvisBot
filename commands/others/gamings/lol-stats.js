@@ -1,4 +1,4 @@
-const { RIOT_API, BOT_LOGO, BOT_TEXTFOOTER} = require('../../config.json');
+const { RIOT_API, BOT_LOGO, BOT_TEXTFOOTER} = require('../../../config.json');
 const { SlashCommandBuilder, EmbedBuilder } = require('discord.js');
 const axios = require('axios');
 const wait = require('node:timers/promises').setTimeout;
