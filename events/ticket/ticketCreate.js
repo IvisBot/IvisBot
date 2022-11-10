@@ -1,5 +1,5 @@
-const { TICKETS_CATEGORY, CLIENT_ID } = require('../../config.json');
-const { ActionRowBuilder, SelectMenuBuilder, PermissionsBitField } = require('discord.js');
+const { TICKETS_CATEGORY, CLIENT_ID, BOT_LOGO, BOT_TEXTFOOTER } = require('../../config.json');
+const { SelectMenuBuilder, PermissionsBitField, EmbedBuilder, ActionRowBuilder, ButtonBuilder } = require('discord.js');
 
 module.exports = {
     name : 'interactionCreate',
@@ -61,12 +61,32 @@ module.exports = {
                                 ],
                             }
                         ],
-                    }).then(async (channel) => {
-                        await channel.send({ content: `Hello ${interaction.user}!` });
+                    }).then((channel) => {
+                        const newTicketEmbed = new EmbedBuilder()
+                            .setTitle('Ticket created')
+                            .setDescription(`Your ticket has been created, please wait for a staff member to answer you.
+                            Describe your problem as much as possible.
+                            You can close the ticket by clicking on the button below. 
+                            \n**__Ticket information__** \n**User :** ${interaction.user.username}
+                            **Reason :** role asking
+                            **Channel :** <#${channel.id}>`)
+                            .setColor('Purple')
+                            .setThumbnail(interaction.user.avatarURL())
+                            .setFooter({ text: BOT_TEXTFOOTER, iconURL: BOT_LOGO});
+                            
+                        const newTicketButton = new ActionRowBuilder()
+                            .addComponents(
+                                new ButtonBuilder()
+                                    .setCustomId('closeTicket')
+                                    .setLabel('Close the ticket')
+                                    .setStyle(4)
+                            );
+                        
+                        interaction.guild.channels.cache.get(channel.id).send({ embeds: [newTicketEmbed], components: [newTicketButton] });
+                        interaction.reply({ content: `You have selected the [⚜️ Role asking] option`, ephemeral: true });
                     });
-                    await interaction.reply({ content: `You selected the [⚜️ role asking] option`, ephemeral: true });
                 } else {
-                    await interaction.reply({ content: `You selected the [🚩 Report] option`, ephemeral: true });
+                    await interaction.reply({ content: `You have selected the [🚩 Report] option`, ephemeral: true });
                 }
             }
         }
