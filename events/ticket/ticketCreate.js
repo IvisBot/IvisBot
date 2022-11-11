@@ -37,6 +37,7 @@ module.exports = {
                         .setTitle('🎫 Ticket created')
                         .setDescription(`Your ticket has been created, please wait for a staff member to answer you.
                         Describe or update your problem as much as possible by clicking on the button below.
+                        Description is required to create a ticket, otherwise it will be deleted, but you can update it later.
                         \n**__Ticket information__** \n**User :** ${interaction.user.username}
                         **Channel :** <#${channel.id}>`)
                         .setColor('Purple')

@@ -1,7 +1,7 @@
 const { ActionRowBuilder, ModalBuilder, TextInputBuilder, TextInputStyle, EmbedBuilder } = require('discord.js');
 const mongoose = require('mongoose');
 const Ticket = require('../../models/ticket.model');
-const { BOT_LOGO, BOT_TEXTFOOTER } = require('../../config.json');
+const { BOT_LOGO, BOT_TEXTFOOTER, MODS_ID } = require('../../config.json');
 
 module.exports = {
     name : 'interactionCreate',
@@ -46,8 +46,13 @@ module.exports = {
                     const ticketDescEmbed = new EmbedBuilder()
                         .setColor('Purple')
                         .setTitle('Ticket description')
-                        .setDescription(`Your ticket has been created with the following description: \n\n**Reason:** ${interaction.fields.getTextInputValue('ticketReasonInput')} \n**Description:** ${interaction.fields.getTextInputValue('ticketDescInput')}`)
+                        .setDescription(` You successfully added a description to your ticket.
+                        The team will contact you as soon as possible.
+                        \n**Reason:** ${interaction.fields.getTextInputValue('ticketReasonInput')}
+                        \n**Description:** ${interaction.fields.getTextInputValue('ticketDescInput')}`)
                         .setFooter({ text: BOT_TEXTFOOTER, iconURL: BOT_LOGO});
+                    
+                    await interaction.channel.send(`<@&${MODS_ID}> A new ticket has been created, please answer it as soon as possible.`);
                     
                     await interaction.reply({ embeds: [ticketDescEmbed] });
                 } else {
@@ -59,7 +64,10 @@ module.exports = {
                     const ticketDescEmbed = new EmbedBuilder()
                         .setColor('Purple')
                         .setTitle('Ticket description')
-                        .setDescription(`Your description has been updated with the following description: \n\n**Reason:** ${interaction.fields.getTextInputValue('ticketReasonInput')} \n**Description:** ${interaction.fields.getTextInputValue('ticketDescInput')}`)
+                        .setDescription(` You successfully updated your description.
+                        The team will contact you as soon as possible.
+                        \n**Reason:** ${interaction.fields.getTextInputValue('ticketReasonInput')}
+                        \n**Description:** ${interaction.fields.getTextInputValue('ticketDescInput')}`)
                         .setFooter({ text: BOT_TEXTFOOTER, iconURL: BOT_LOGO});
                     
                         const messages = await interaction.channel.messages.fetch();
