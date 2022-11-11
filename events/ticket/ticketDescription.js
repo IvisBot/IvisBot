@@ -1,7 +1,7 @@
-const { ActionRowBuilder, ModalBuilder, TextInputBuilder, TextInputStyle } = require('discord.js');
+const { ActionRowBuilder, ModalBuilder, TextInputBuilder, TextInputStyle, EmbedBuilder } = require('discord.js');
 const mongoose = require('mongoose');
 const Ticket = require('../../models/ticket.model');
-const TicketModel = require('../../models/level.model');
+const { BOT_LOGO, BOT_TEXTFOOTER } = require('../../config.json');
 
 module.exports = {
     name : 'interactionCreate',
@@ -34,22 +34,40 @@ module.exports = {
         }
         if (interaction.isModalSubmit()) {
             if (interaction.customId === 'ticketDescModal') {
-                const ticketRandomId = ((Math.floor(Math.random() * (4294967296 - 0)) + 0).toString()).padEnd(10, '0'); 
-                const TicketModel = await Ticket.findOne({ ticketId: ticketRandomId });
+                const TicketModel = await Ticket.findOne({ ticketId: interaction.channel.id });
                 if (!TicketModel) {
                     const TicketNewModel = new Ticket({
-                        ticketId: ticketRandomId,
+                        ticketId: interaction.channel.id,
                         reason: interaction.fields.getTextInputValue('ticketReasonInput'),
                         description: interaction.fields.getTextInputValue('ticketDescInput')
                     });
                     await TicketNewModel.save();
+
+                    const ticketDescEmbed = new EmbedBuilder()
+                        .setColor('Purple')
+                        .setTitle('Ticket description')
+                        .setDescription(`Your ticket has been created with the following description: \n\n**Reason:** ${interaction.fields.getTextInputValue('ticketReasonInput')} \n**Description:** ${interaction.fields.getTextInputValue('ticketDescInput')}`)
+                        .setFooter({ text: BOT_TEXTFOOTER, iconURL: BOT_LOGO});
+                    
+                    await interaction.reply({ embeds: [ticketDescEmbed] });
                 } else {
                     await TicketModel.updateOne({
                         reason: interaction.fields.getTextInputValue('ticketReasonInput'),
                         description: interaction.fields.getTextInputValue('ticketDescInput')
                     });
+
+                    const ticketDescEmbed = new EmbedBuilder()
+                        .setColor('Purple')
+                        .setTitle('Ticket description')
+                        .setDescription(`Your description has been updated with the following description: \n\n**Reason:** ${interaction.fields.getTextInputValue('ticketReasonInput')} \n**Description:** ${interaction.fields.getTextInputValue('ticketDescInput')}`)
+                        .setFooter({ text: BOT_TEXTFOOTER, iconURL: BOT_LOGO});
+                    
+                        const messages = await interaction.channel.messages.fetch();
+                        const lastMessage = messages.first();
+
+                        lastMessage.edit({ embeds: [ticketDescEmbed] });
+                        interaction.deferUpdate();
                 }
-                interaction.reply({ content: "Description added/updated to the ticket.", ephemeral: true });
             }
         }
     }
