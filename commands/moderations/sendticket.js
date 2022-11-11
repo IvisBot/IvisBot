@@ -1,5 +1,5 @@
 const { SlashCommandBuilder, EmbedBuilder, ActionRowBuilder, ButtonBuilder } = require('discord.js');
-const { BOT_LOGO, BOT_TEXTFOOTER, TICKET} = require('../../config.json');
+const { BOT_LOGO, BOT_TEXTFOOTER} = require('../../config.json');
 
 module.exports = {
     data : new SlashCommandBuilder ()
