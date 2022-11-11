@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 
 const TicketSchema = mongoose.Schema({
-    memberId: {
+    ticketId: {
         type: String,
         required: true
     },
@@ -9,10 +9,10 @@ const TicketSchema = mongoose.Schema({
         type: String,
         default : "No reason"
     },
-    descFlag: {
-        type: Boolean,
-        default: false
-    }
+    description: {
+        type: String,
+        default : "No description"
+    },
 });
 
 module.exports = mongoose.model('ticket', TicketSchema);

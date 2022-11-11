@@ -1,5 +1,5 @@
 const { TICKETS_CATEGORY, CLIENT_ID, BOT_LOGO, BOT_TEXTFOOTER } = require('../../config.json');
-const { SelectMenuBuilder, PermissionsBitField, EmbedBuilder, ActionRowBuilder, ButtonBuilder } = require('discord.js');
+const { PermissionsBitField, EmbedBuilder, ActionRowBuilder, ButtonBuilder } = require('discord.js');
 
 module.exports = {
     name : 'interactionCreate',
@@ -36,9 +36,8 @@ module.exports = {
                     const newTicketEmbed = new EmbedBuilder()
                         .setTitle('🎫 Ticket created')
                         .setDescription(`Your ticket has been created, please wait for a staff member to answer you.
-                        Describe your problem as much as possible by clicking on the button below.
+                        Describe or update your problem as much as possible by clicking on the button below.
                         \n**__Ticket information__** \n**User :** ${interaction.user.username}
-                        **Reason :** role asking
                         **Channel :** <#${channel.id}>`)
                         .setColor('Purple')
                         .setThumbnail(interaction.user.avatarURL())
