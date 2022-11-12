@@ -1,5 +1,4 @@
 const { ActionRowBuilder, ModalBuilder, TextInputBuilder, TextInputStyle, EmbedBuilder } = require('discord.js');
-const mongoose = require('mongoose');
 const Ticket = require('../../models/ticket.model');
 const { BOT_LOGO, BOT_TEXTFOOTER, MODS_ID } = require('../../config.json');
 
@@ -67,7 +66,7 @@ module.exports = {
                         .setDescription(` You successfully updated your description.
                         The team will contact you as soon as possible.
                         \n**Reason:** ${interaction.fields.getTextInputValue('ticketReasonInput')}
-                        \n**Description:** ${interaction.fields.getTextInputValue('ticketDescInput')}`)
+                        **Description:** ${interaction.fields.getTextInputValue('ticketDescInput')}`)
                         .setFooter({ text: BOT_TEXTFOOTER, iconURL: BOT_LOGO});
                     
                         const messages = await interaction.channel.messages.fetch();
