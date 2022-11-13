@@ -1,4 +1,4 @@
-const { RIOT_API, BOT_LOGO, BOT_TEXTFOOTER} = require('../../../config.json');
+const { RIOT_API, BOT_LOGO, BOT_TEXTFOOTER} = require('../../config.json');
 const { SlashCommandBuilder, EmbedBuilder } = require('discord.js');
 const axios = require('axios');
 const wait = require('node:timers/promises').setTimeout;
@@ -51,6 +51,8 @@ module.exports = {
 			.setThumbnail(`https://ddragon.leagueoflegends.com/cdn/11.16.1/img/profileicon/${profile.data.profileIconId}.png`)
 			.setColor('#a80016')
 			.setImage('https://www.dracik.sk/galeria/1_354103/puzzle-1000-panorama-league-of-legends-original.jpg')
+			.setTimestamp()
+			.setFooter({ text: BOT_TEXTFOOTER, iconURL: BOT_LOGO})
 			.addFields({name: 'Level', value: profile.data.summonerLevel.toString(), inline: true},
 			{name: 'Region', value: region.toUpperCase(), inline: true},
 			{name: '\u200B', value: '**⚔️ Ranked stats**'})
@@ -77,9 +79,6 @@ module.exports = {
 					}
 				}
 			}
-
-			lolAmbed.setTimestamp()
-			.setFooter({ text: BOT_TEXTFOOTER, iconURL: BOT_LOGO});
 
 			await interaction.editReply({ embeds: [ lolAmbed] });
 		

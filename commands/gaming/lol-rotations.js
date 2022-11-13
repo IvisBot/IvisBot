@@ -1,4 +1,4 @@
-const { RIOT_API } = require('../../../config.json');
+const { RIOT_API } = require('../../config.json');
 const { SlashCommandBuilder, EmbedBuilder, AttachmentBuilder } = require('discord.js');
 const Canvas = require('@napi-rs/canvas');
 const axios = require('axios');
