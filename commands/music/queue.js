@@ -1,5 +1,5 @@
 //a faire
-const { BOT_LOGO, BOT_TEXTFOOTER} = require('../../../config.json');
+const { BOT_LOGO, BOT_TEXTFOOTER} = require('../../config.json');
 const { SlashCommandBuilder } = require("@discordjs/builders")
 const { EmbedBuilder } = require("discord.js")
 
@@ -16,16 +16,20 @@ module.exports = {
         }
 
         const queueString = queue.tracks.slice(0, 10).map((song, i) => {
-            return `${i}) [${song.duration}]\` ${song.title} - <@${song.requestedBy.id}>`
+            return `${i+1}) ${song.title} \`[${song.duration}]\` - <@${song.requestedBy.id}>`
         }).join("\n")
 
         const currentSong = queue.current
 
         queueEmbed = new EmbedBuilder()
-            .setDescription(`**Currently Playing**\n` + 
-            (currentSong ? `\`[${currentSong.duration}]\` ${currentSong.title} - <@${currentSong.requestedBy.id}>` : "None") +
-            `\n\n**Queue**\n${queueString}`)
+            //.setDescription( (currentSong ? `\`[${currentSong.duration}]\` ${currentSong.title} - <@${currentSong.requestedBy.id}>` : "None")
             .setThumbnail(currentSong.setThumbnail)
+            .addFields({name: 'Currently Playing :', value : `*${currentSong.title}* \`[${currentSong.duration}]\` - <@${currentSong.requestedBy.id}>`, inline: true},
+                       {name: 'Queue :', value : queueString, inline: false})
+            .setAuthor({ name: 'Added by '+interaction.user.tag, iconURL: BOT_LOGO })
+            .setColor('#9011FF')
+            .setTimestamp()
+            .setFooter({ text: BOT_TEXTFOOTER, iconURL: BOT_LOGO});
 
         await interaction.reply({embeds: [queueEmbed]})
     }

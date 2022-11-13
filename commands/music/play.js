@@ -1,4 +1,4 @@
-const { BOT_LOGO, BOT_TEXTFOOTER} = require('../../../config.json');
+const { BOT_LOGO, BOT_TEXTFOOTER} = require('../../config.json');
 const { SlashCommandBuilder } = require('@discordjs/builders');
 const { EmbedBuilder } = require('discord.js');
 const { QueryType } = require('discord-player');
@@ -50,6 +50,9 @@ module.exports = {
             };
 
             const song = result.tracks[0];
+
+            console.log(song);
+            
             await queue.addTrack(song);
             
             if(!queue.playing) await queue.play();
