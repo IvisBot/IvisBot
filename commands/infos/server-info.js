@@ -7,8 +7,6 @@ module.exports = {
 		.setDescription('Display info about this server.'),
 	async execute({ client, interaction }) {
 
-		console.log("salut");
-
 		icon = interaction.guild.iconURL()
 
 		const serverInfoEmbed = new EmbedBuilder()

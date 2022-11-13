@@ -13,8 +13,6 @@ module.exports = {
     name: 'messageCreate',
     async execute(msg) {
 
-        if (levelModel) levelModel.messageCount++;
-
         const userCooldowned = await earnXpCooldown.getUser(msg.author.id);
 
         if(!userCooldowned) {
@@ -22,6 +20,7 @@ module.exports = {
                 const levelModel = await Level.findOne({ memberId: msg.author.id });
 
                 if(levelModel) {
+                    levelModel.messageCount++;
                     levelModel.xp += Math.floor(Math.random() * (25 - 15)) + 15;
 
                     if (levelModel.level != 0) condition = Math.floor((100 + (levelModel.level-1) * 20) ** 2 / (100 + levelModel.level));
@@ -46,13 +45,19 @@ module.exports = {
                 } else {
                     console.log("New user detected in the database");
 
-                    const levelM = await new Level({ memberId: msg.author.id });
+                    const levelM = new Level({ memberId: msg.author.id });
                     await levelM.save();
 
                     msg.reply("Welcome to the server, you start at the level 1, you can now start chatting to gain xp");
                 }
             }
             await earnXpCooldown.addUser(msg.author.id);
+        } else if (msg.author.id != CLIENT_ID) {
+            const levelModel = await Level.findOne({ memberId: msg.author.id });
+            if(levelModel) {
+                levelModel.messageCount++;
+                await levelModel.save();
+            }
         }
     }
 }
