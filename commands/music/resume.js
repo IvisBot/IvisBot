@@ -1,6 +1,6 @@
-//a 
-
 const { SlashCommandBuilder } = require("@discordjs/builders")
+const { EmbedBuilder } = require('discord.js');
+const { BOT_LOGO, BOT_TEXTFOOTER} = require('../../config.json');
 
 module.exports = {
 	data: new SlashCommandBuilder()
@@ -17,6 +17,13 @@ module.exports = {
 
 		queue.setPaused(false);
 
-        await interaction.reply("Player has been resumed.")
+        embed = new EmbedBuilder()
+            .setDescription(`▶️ Music player has been resumed!`)
+            .setAuthor({ name: 'Resumed by '+interaction.user.tag, iconURL: interaction.user.avatarURL() })
+            .setColor('#9011FF')
+            .setTimestamp()
+            .setFooter({ text: BOT_TEXTFOOTER, iconURL: BOT_LOGO});
+
+        await interaction.reply({embeds:[embed]})
 	},
 }

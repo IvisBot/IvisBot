@@ -58,10 +58,10 @@ module.exports = {
             if(!queue.playing) await queue.play();
 
             embed
-                .setDescription(`Added ${song.title} to the queue!`)
+                .setDescription(`${song.title} \`${song.duration}\` - <@${song.requestedBy.id}>`)
                 .setThumbnail(song.thumbnail)
-                .addFields({name: 'Duration :', value : song.duration, inline: true})
-                .setAuthor({ name: 'Added by '+interaction.user.tag, iconURL: BOT_LOGO })
+                .addFields({name: 'Duration :', value : `\`${song.duration}\``, inline: true})
+                .setAuthor({ name: 'Added by '+interaction.user.tag, iconURL: interaction.user.avatarURL() })
                 .setColor('#9011FF')
                 .setTimestamp()
 			    .setFooter({ text: BOT_TEXTFOOTER, iconURL: BOT_LOGO});
@@ -83,10 +83,9 @@ module.exports = {
             await queue.addTracks(result.tracks)
 
             embed
-                .setDescription(`Added ${playlist.title} to the queue!`)
+                .setDescription(`${playlist.title} \`${playlist.duration}\` - <@${playlist.requestedBy.id}>`)
                 .setThumbnail(`${playlist.thumbnail}.jpg`)
-                .addFields({name: 'Duration :', value : playlist.duration, inline: true})
-                .setAuthor({ name: 'Added by '+interaction.user.tag, iconURL: BOT_LOGO })
+                .setAuthor({ name: 'Added by '+interaction.user.tag, iconURL: interaction.user.avatarURL() })
                 .setColor('#9011FF')
                 .setTimestamp()
 			    .setFooter({ text: BOT_TEXTFOOTER, iconURL: BOT_LOGO});
@@ -109,10 +108,9 @@ module.exports = {
             if(!queue.playing) await queue.play();
 
             embed
-                .setDescription(`Added ${song.title} to the queue!`)
+                .setDescription(`${song.title} \`${song.duration}\` - <@${song.requestedBy.id}>`)
                 .setThumbnail(song.thumbnail)
-                .addFields({name: 'Duration :', value : song.duration, inline: true})
-                .setAuthor({ name: 'Added by '+interaction.user.tag, iconURL: BOT_LOGO })
+                .setAuthor({ name: 'Added by '+interaction.user.tag, iconURL: interaction.user.avatarURL() })
                 .setColor('#9011FF')
                 .setTimestamp()
 			    .setFooter({ text: BOT_TEXTFOOTER, iconURL: BOT_LOGO});

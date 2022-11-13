@@ -1,4 +1,6 @@
 const { SlashCommandBuilder } = require("@discordjs/builders")
+const { EmbedBuilder } = require('discord.js');
+const { BOT_LOGO, BOT_TEXTFOOTER} = require('../../config.json');
 
 module.exports = {
 	data: new SlashCommandBuilder()
@@ -15,6 +17,14 @@ module.exports = {
 
 		queue.setPaused(true);
 
-        await interaction.reply("⏸️ Player has been paused.")
+		embed = new EmbedBuilder()
+            .setDescription(`⏸️ Player has been paused.`)
+            .setAuthor({ name: 'Paused by '+interaction.user.tag, iconURL: interaction.user.avatarURL() })
+            .setColor('#9011FF')
+            .setTimestamp()
+            .setFooter({ text: BOT_TEXTFOOTER, iconURL: BOT_LOGO});
+
+        await interaction.reply({embeds:[embed]})
+
 	},
 }

@@ -1,4 +1,3 @@
-//a faire
 const { BOT_LOGO, BOT_TEXTFOOTER} = require('../../config.json');
 const { SlashCommandBuilder } = require("@discordjs/builders")
 const { EmbedBuilder } = require("discord.js")
@@ -10,9 +9,9 @@ module.exports = {
     async execute ({ client, interaction }) {
         const queue = client.player.getQueue(interaction.guildId)
 
-        if (!queue || !queue.playing)
+        if (!queue.current)
         {
-            return interaction.reply("There are no songs in the queue");
+            return interaction.reply("There is no song in the queue");
         }
 
         const queueString = queue.tracks.slice(0, 10).map((song, i) => {
@@ -22,11 +21,15 @@ module.exports = {
         const currentSong = queue.current
 
         queueEmbed = new EmbedBuilder()
-            //.setDescription( (currentSong ? `\`[${currentSong.duration}]\` ${currentSong.title} - <@${currentSong.requestedBy.id}>` : "None")
             .setThumbnail(currentSong.setThumbnail)
-            .addFields({name: 'Currently Playing :', value : `*${currentSong.title}* \`[${currentSong.duration}]\` - <@${currentSong.requestedBy.id}>`, inline: true},
-                       {name: 'Queue :', value : queueString, inline: false})
-            .setAuthor({ name: 'Added by '+interaction.user.tag, iconURL: BOT_LOGO })
+            .addFields({name: 'Currently Playing :', value : `${currentSong.title} \`[${currentSong.duration}]\` - <@${currentSong.requestedBy.id}>`, inline: true},);
+
+        if (queue.tracks[0]) {
+            queueEmbed.addFields({name: 'Queue :', value : queueString, inline: false});
+
+        }
+        queueEmbed
+            .setAuthor({ name: 'Asked by '+interaction.user.tag, iconURL: interaction.user.avatarURL() })
             .setColor('#9011FF')
             .setTimestamp()
             .setFooter({ text: BOT_TEXTFOOTER, iconURL: BOT_LOGO});
