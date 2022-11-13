@@ -1,3 +1,4 @@
+const { BOT_LOGO, BOT_TEXTFOOTER} = require('../../../config.json');
 const { SlashCommandBuilder } = require('@discordjs/builders');
 const { EmbedBuilder } = require('discord.js');
 const { QueryType } = require('discord-player');
@@ -27,7 +28,7 @@ module.exports = {
 
     async execute({ client, interaction }) {
 
-        if (!interaction.member.voice.channel) return interaction.reply({content: 'You are not in a voice channel!', ephemeral: true});
+        if (!interaction.member.voice.channel) return interaction.reply({content: `You're not in a voice channel!`, ephemeral: true});
 
         const queue = await client.player.createQueue(interaction.guild);
 
@@ -56,7 +57,11 @@ module.exports = {
             embed
                 .setDescription(`Added ${song.title} to the queue!`)
                 .setThumbnail(song.thumbnail)
-                .setFooter({ text: `Duration: ${song.duration}`}) 
+                .addFields({name: 'Duration :', value : song.duration, inline: true})
+                .setAuthor({ name: 'Added by '+interaction.user.tag, iconURL: BOT_LOGO })
+                .setColor('#9011FF')
+                .setTimestamp()
+			    .setFooter({ text: BOT_TEXTFOOTER, iconURL: BOT_LOGO});
             
         } else if (interaction.options.getSubcommand() === 'playlist') {
             let url = interaction.options.getString('url');
@@ -77,7 +82,11 @@ module.exports = {
             embed
                 .setDescription(`Added ${playlist.title} to the queue!`)
                 .setThumbnail(`${playlist.thumbnail}.jpg`)
-                .setFooter({text: `duration: ${playlist.duration}`});
+                .addFields({name: 'Duration :', value : playlist.duration, inline: true})
+                .setAuthor({ name: 'Added by '+interaction.user.tag, iconURL: BOT_LOGO })
+                .setColor('#9011FF')
+                .setTimestamp()
+			    .setFooter({ text: BOT_TEXTFOOTER, iconURL: BOT_LOGO});
             
         } else if (interaction.options.getSubcommand() === 'search') {
             let url = interaction.options.getString('searchterms');
@@ -99,7 +108,11 @@ module.exports = {
             embed
                 .setDescription(`Added ${song.title} to the queue!`)
                 .setThumbnail(song.thumbnail)
-                .setFooter({ text: `Duration: ${song.duration}`})
+                .addFields({name: 'Duration :', value : song.duration, inline: true})
+                .setAuthor({ name: 'Added by '+interaction.user.tag, iconURL: BOT_LOGO })
+                .setColor('#9011FF')
+                .setTimestamp()
+			    .setFooter({ text: BOT_TEXTFOOTER, iconURL: BOT_LOGO});
             
         }
 

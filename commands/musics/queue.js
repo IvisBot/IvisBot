@@ -1,3 +1,5 @@
+//a faire
+const { BOT_LOGO, BOT_TEXTFOOTER} = require('../../../config.json');
 const { SlashCommandBuilder } = require("@discordjs/builders")
 const { EmbedBuilder } = require("discord.js")
 

@@ -1,3 +1,5 @@
+// a
+
 const { SlashCommandBuilder } = require("@discordjs/builders")
 const { EmbedBuilder } = require("discord.js");
 
@@ -23,6 +25,8 @@ module.exports = {
         const skipEmbed = new EmbedBuilder()
             .setDescription(`${currentSong.title} has been skipped!`)
             .setThumbnail(currentSong.thumbnail)
+
+            // queue.next is playing now ?
         
         await interaction.reply({embeds: [skipEmbed]});
 	},

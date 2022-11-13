@@ -9,12 +9,12 @@ module.exports = {
 
 		if (!queue)
 		{
-			await interaction.reply("There are no songs in the queue")
+			await interaction.reply("There is no sound in this playlist.")
 			return;
 		}
 
 		queue.setPaused(true);
 
-        await interaction.reply("Player has been paused.")
+        await interaction.reply("⏸️ Player has been paused.")
 	},
 }
