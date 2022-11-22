@@ -25,7 +25,7 @@ module.exports = {
 		const canvas = Canvas.createCanvas(800, 800);
         const context = canvas.getContext('2d');
 
-	    const background = await Canvas.loadImage('./images/rotation_bg.jpg');
+	    const background = await Canvas.loadImage('./images/rotation_bg.png');
 		context.drawImage(background, 0, 0, canvas.width, canvas.height);
 
 		for (const [key, value] of Object.entries(champions.data.data)) {
