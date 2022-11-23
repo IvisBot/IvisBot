@@ -19,7 +19,7 @@
   "dependencies": {
     "@discordjs/opus": "github:discordjs/opus",
     "@napi-rs/canvas": "^0.1.30",
-    "axios": "^1.1.3",
+    "axios": "^1.2.0",
     "canvas": "^2.10.2",
     "discord": "^0.8.2",
     "discord-api-types": "^0.37.17",
