@@ -1,6 +1,5 @@
 const { RIOT_API, BOT_LOGO, BOT_TEXTFOOTER} = require('../../config.json');
 const { SlashCommandBuilder, EmbedBuilder } = require('discord.js');
-const axios = require('axios');
 const wait = require('node:timers/promises').setTimeout;
 
 
@@ -34,44 +33,44 @@ module.exports = {
 		}
 
 		try {
-			var profile = await axios.get(`https://${region}.api.riotgames.com/lol/summoner/v4/summoners/by-name/${player}?api_key=${RIOT_API}`);
+			var profile = await ( await fetch(`https://${region}.api.riotgames.com/lol/summoner/v4/summoners/by-name/${player}?api_key=${RIOT_API}`)).json();
 
 		}catch (error) {
 			console.error(error);
 			return interaction.editReply({ content: `No player nammed ${player} on ${region}`, ephemeral: true });
 		}
 		
-		const masteries = await axios.get(`https://${region}.api.riotgames.com/lol/champion-mastery/v4/champion-masteries/by-summoner/${profile.data.id}?api_key=${RIOT_API}`);
-		const rank = await axios.get(`https://${region}.api.riotgames.com/lol/league/v4/entries/by-summoner/${profile.data.id}?api_key=${RIOT_API}`);
-		const bestMasteries =  masteries.data.slice(0,3);
+		const masteries = await ( await fetch(`https://${region}.api.riotgames.com/lol/champion-mastery/v4/champion-masteries/by-summoner/${profile.id}?api_key=${RIOT_API}`)).json();
+		const rank = await ( await fetch(`https://${region}.api.riotgames.com/lol/league/v4/entries/by-summoner/${profile.id}?api_key=${RIOT_API}`)).json();
+		const bestMasteries =  masteries.slice(0,3);
 
 		const lolAmbed = new EmbedBuilder()
-			.setTitle("🧙 "+profile.data.name+ "'s stats")
+			.setTitle("🧙 "+profile.name+ "'s stats")
 			.setAuthor({ name: 'Requested by '+interaction.user.tag, iconURL: 'https://developer.riotgames.com/static/img/katarina.55a01cf0560a.gif' })
-			.setThumbnail(`https://ddragon.leagueoflegends.com/cdn/11.16.1/img/profileicon/${profile.data.profileIconId}.png`)
+			.setThumbnail(`https://ddragon.leagueoflegends.com/cdn/11.16.1/img/profileicon/${profile.profileIconId}.png`)
 			.setColor('#a80016')
 			.setImage('https://www.dracik.sk/galeria/1_354103/puzzle-1000-panorama-league-of-legends-original.jpg')
 			.setTimestamp()
 			.setFooter({ text: BOT_TEXTFOOTER, iconURL: BOT_LOGO})
-			.addFields({name: 'Level', value: profile.data.summonerLevel.toString(), inline: true},
+			.addFields({name: 'Level', value: profile.summonerLevel.toString(), inline: true},
 			{name: 'Region', value: region.toUpperCase(), inline: true},
 			{name: '\u200B', value: '**⚔️ Ranked stats**'})
-			if (rank.data.length == 0) {
+			if (rank.length == 0) {
 				lolAmbed.addFields({name: 'Rank Solo & Flex', value: 'Unranked', inline: true},);
 			}
 			else {
-				for (var i=0; i<rank.data.length; i++){
+				for (var i=0; i<rank.length; i++){
 					lolAmbed.addFields(
-						{name: rank.data[i].queueType.substring(0, 11), value: rank.data[i].tier+" : "+rank.data[i].rank +` (${rank.data[i].leaguePoints} LP)`, inline: true},)}
+						{name: rank[i].queueType.substring(0, 11), value: rank[i].tier+" : "+rank[i].rank +` (${rank[i].leaguePoints} LP)`, inline: true},)}
 					}
 
 			lolAmbed.addFields({name: '\u200B', value: "**⭐ Most played champs**", inline: false})
 			
 			
-			const req = await axios.get('http://ddragon.leagueoflegends.com/cdn/12.20.1/data/en_US/champion.json');
+			const req = await ( await fetch('http://ddragon.leagueoflegends.com/cdn/12.20.1/data/en_US/champion.json')).json();
 			for (var i=0; i<bestMasteries.length; i++){
 
-				const championList = req.data.data;
+				const championList = req.data;
 				
 				for (const [key, value] of Object.entries(championList)) {
 					if (value.key == bestMasteries[i].championId) {

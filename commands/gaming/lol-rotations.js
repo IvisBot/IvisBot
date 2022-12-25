@@ -1,7 +1,6 @@
 const { RIOT_API } = require('../../config.json');
 const { SlashCommandBuilder, EmbedBuilder, AttachmentBuilder } = require('discord.js');
 const Canvas = require('@napi-rs/canvas');
-const axios = require('axios');
 
 module.exports = {
 	data: new SlashCommandBuilder()
@@ -11,9 +10,9 @@ module.exports = {
 	async execute({client, interaction}) {
 
         await interaction.deferReply();
-        
-		const champions = await axios.get('http://ddragon.leagueoflegends.com/cdn/12.20.1/data/en_US/champion.json');
-		const rotations = await axios.get(`https://euw1.api.riotgames.com/lol/platform/v3/champion-rotations?api_key=${RIOT_API}`);
+		
+		const champions = await ( await fetch('http://ddragon.leagueoflegends.com/cdn/12.20.1/data/en_US/champion.json')).json();
+		const rotations = await ( await fetch(`https://euw1.api.riotgames.com/lol/platform/v3/champion-rotations?api_key=${RIOT_API}`)).json();
 
 		const place = [[10,10], [210,10], [410,10], [610,10], 
 					   [10,210], [210,210], [410,210], [610,210],
@@ -28,14 +27,12 @@ module.exports = {
 	    const background = await Canvas.loadImage('./images/rotation_bg.png');
 		context.drawImage(background, 0, 0, canvas.width, canvas.height);
 
-		for (const [key, value] of Object.entries(champions.data.data)) {
-			//console.log( parseInt(value.key));
-			//console.log(rotations.data.freeChampionIds)
-			if ((rotations.data.freeChampionIds).includes(parseInt(value.key))) {
+		for (const [key, value] of Object.entries(champions.data)) {
+			if ((rotations.freeChampionIds).includes(parseInt(value.key))) {
 				const champion = await Canvas.loadImage(`https://ddragon.leagueoflegends.com/cdn/12.4.1/img/champion/${key}.png`);
 				context.drawImage(champion, place[placec][0], place[placec][1], 180, 180);
 				placec += 1;
-				console.log(key);
+				console.log("added : "+key);
 			}
 		}
 
